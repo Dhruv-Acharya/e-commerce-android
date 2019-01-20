@@ -1,7 +1,9 @@
 package com.onboarding.ecomm.Main;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -12,19 +14,19 @@ import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
-import com.onboarding.ecomm.Adapters.CardViewAdapter;
 import com.onboarding.ecomm.Fragment.BBPFragment;
 import com.onboarding.ecomm.Fragment.ElectronicsFragment;
 import com.onboarding.ecomm.Fragment.FashionFragment;
 import com.onboarding.ecomm.Fragment.HomeFragment;
 import com.onboarding.ecomm.Fragment.MobileFragment;
 import com.onboarding.ecomm.Fragment.TvFragment;
+import com.onboarding.ecomm.Login.LoginPage;
 import com.onboarding.ecomm.R;
 
 import java.util.ArrayList;
@@ -42,6 +44,7 @@ public class MainActivity extends AppCompatActivity
     private DrawerLayout drawer;
     private ViewPager viewPager;
     private TabLayout tabLayout;
+    private FloatingActionButton floatingActionButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,12 +61,19 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        floatingActionButton=findViewById(R.id.fab);
+        floatingActionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(MainActivity.this, LoginPage.class);
+            }
+        });
 
-        recyclerView = findViewById(R.id.recyclerView);
+        /*recyclerView = findViewById(R.id.recyclerView);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(recyclerView.getContext(), 2);
         recyclerView.setLayoutManager(gridLayoutManager);
         CardViewAdapter cardViewAdapter = new CardViewAdapter(nameList, logos);
-        recyclerView.setAdapter(cardViewAdapter);
+        recyclerView.setAdapter(cardViewAdapter);*/
 
         viewPager = findViewById(R.id.viewpager);
         tabLayout = findViewById(R.id.tabs);
@@ -104,9 +114,10 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.action_cart) {
              startActivity(new Intent(MainActivity.this, CartListActivity.class));
             return true;
-        } else {
-//            startActivity(new Intent(MainActivity.this, EmptyActivity.class));
-
+        } else if(id==R.id.web_site){
+            Uri uri = Uri.parse("http://www.google.com");
+            Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+            startActivity(intent);
         }
 
         return super.onOptionsItemSelected(item);
