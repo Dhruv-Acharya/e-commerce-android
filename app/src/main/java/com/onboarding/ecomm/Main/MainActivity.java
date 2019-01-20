@@ -52,6 +52,7 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = findViewById(R.id.toolbar);
         toolbar.setTitle("LELO.COM");
         setSupportActionBar(toolbar);
+
         drawer = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -132,6 +133,8 @@ public class MainActivity extends AppCompatActivity
             viewPager.setCurrentItem(3);
         } else if (itemId == R.id.nav_item5) {
             viewPager.setCurrentItem(4);
+        }else if (itemId == R.id.my_cart) {
+            startActivity(new Intent(MainActivity.this, CartListActivity.class));
         }
 
 

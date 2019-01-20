@@ -2,18 +2,20 @@ package com.onboarding.ecomm.Main;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 
 import com.onboarding.ecomm.R;
 
 public class SplashScreenActivity extends AppCompatActivity implements Animation.AnimationListener {
 
     Animation animFadeIn;
-    LinearLayout linearLayout;
+    ConstraintLayout constraintLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,10 +27,10 @@ public class SplashScreenActivity extends AppCompatActivity implements Animation
         // set animation listener
         animFadeIn.setAnimationListener(this);
         // animation for image
-        linearLayout = (LinearLayout) findViewById(R.id.layout_linear);
+        constraintLayout =  findViewById(R.id.layout_constraint);
         // start the animation
-        linearLayout.setVisibility(View.VISIBLE);
-        linearLayout.startAnimation(animFadeIn);
+        constraintLayout.setVisibility(View.VISIBLE);
+        constraintLayout.startAnimation(animFadeIn);
     }
 
 
