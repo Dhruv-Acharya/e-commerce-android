@@ -20,6 +20,7 @@ public class MobileFragment extends Fragment {
             R.drawable.splash_icon));
     ArrayList<String> nameList = new ArrayList(Arrays.asList("22", "23", "24", "25", "26", "27", "DD", "Divanshu", "Anshu", "Srivastava"));
     private RecyclerView recyclerView;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

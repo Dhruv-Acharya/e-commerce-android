@@ -20,6 +20,7 @@ public class BBPFragment extends Fragment {
             R.drawable.splash_icon));
     ArrayList<String> nameList = new ArrayList(Arrays.asList("4", "5", "6", "7", "8", "9", "DD", "Divanshu", "Anshu", "Srivastava"));
     private RecyclerView recyclerView;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

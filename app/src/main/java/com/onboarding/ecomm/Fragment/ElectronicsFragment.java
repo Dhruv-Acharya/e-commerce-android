@@ -20,6 +20,7 @@ public class ElectronicsFragment extends Fragment {
             R.drawable.splash_icon));
     ArrayList<String> nameList = new ArrayList(Arrays.asList("10", "11", "12", "13", "14", "15", "DD", "Divanshu", "Anshu", "Srivastava"));
     private RecyclerView recyclerView;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

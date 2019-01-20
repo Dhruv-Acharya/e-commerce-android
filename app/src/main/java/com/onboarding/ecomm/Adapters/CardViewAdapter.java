@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.facebook.drawee.view.SimpleDraweeView;
 import com.onboarding.ecomm.R;
 
 import java.util.ArrayList;
@@ -51,9 +52,6 @@ class MyViewHolder extends RecyclerView.ViewHolder {
         image = itemView.findViewById(R.id.cardimage);
     }
 
-    public void bind(String dataString) {
-        name.setText(dataString);
-    }
 }
 
 

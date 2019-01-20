@@ -60,11 +60,11 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-        floatingActionButton=findViewById(R.id.fab);
+        floatingActionButton = findViewById(R.id.fab);
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(MainActivity.this, LoginPage.class);
+                Intent intent = new Intent(MainActivity.this, LoginPage.class);
                 startActivity(intent);
             }
         });
@@ -107,9 +107,9 @@ public class MainActivity extends AppCompatActivity
             //startActivity(new Intent(MainActivity.this, SearchResultActivity.class));
             return true;
         } else if (id == R.id.action_cart) {
-             startActivity(new Intent(MainActivity.this, CartListActivity.class));
+            startActivity(new Intent(MainActivity.this, CartListActivity.class));
             return true;
-        } else if(id==R.id.web_site){
+        } else if (id == R.id.web_site) {
             Uri uri = Uri.parse("http://www.google.com");
             Intent intent = new Intent(Intent.ACTION_VIEW, uri);
             startActivity(intent);
