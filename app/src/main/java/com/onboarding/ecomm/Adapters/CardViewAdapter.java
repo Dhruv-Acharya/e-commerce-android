@@ -3,22 +3,23 @@ package com.onboarding.ecomm.Adapters;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.onboarding.ecomm.R;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class CardViewAdapter extends RecyclerView.Adapter {
-    List nameList;
 
-   public CardViewAdapter(List nameList) {
+    ArrayList images, nameList;
+
+    public CardViewAdapter(ArrayList nameList, ArrayList images) {
         this.nameList = nameList;
+        this.images = images;
     }
 
     @NonNull
@@ -30,8 +31,8 @@ public class CardViewAdapter extends RecyclerView.Adapter {
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
-       Log.i("Print",(String)nameList.get(i));
-        ((MyViewHolder)viewHolder).name.setText((String) nameList.get(i));
+        ((MyViewHolder) viewHolder).name.setText((String) nameList.get(i));
+        ((MyViewHolder) viewHolder).image.setImageResource((int) images.get(i));
     }
 
     @Override
@@ -39,13 +40,18 @@ public class CardViewAdapter extends RecyclerView.Adapter {
         return nameList.size();
     }
 }
-    class MyViewHolder extends RecyclerView.ViewHolder {
+
+class MyViewHolder extends RecyclerView.ViewHolder {
     TextView name;
+    ImageView image;
+
     public MyViewHolder(@NonNull View itemView) {
         super(itemView);
-        name=itemView.findViewById(R.id.name);
+        name = itemView.findViewById(R.id.name);
+        image = itemView.findViewById(R.id.cardimage);
     }
-    public void bind(String dataString){
+
+    public void bind(String dataString) {
         name.setText(dataString);
     }
 }
