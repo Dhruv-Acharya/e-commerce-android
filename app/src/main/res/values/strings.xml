@@ -12,11 +12,10 @@
     <string name="nav_header_subtitle">You\'ll find it here!</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="item_1">Electronics</string>
-    <string name="item_2">TVs \u0026 Appliances</string>
+    <string name="item_2">Mobile \u0026 Tablets</string>
     <string name="item_3">Fashion</string>
     <string name="item_4">Home \u0026 Furniture</string>
-    <string name="item_5">Mobile \u0026 Tablets</string>
-    <string name="item_6">Beauty,Books \u0026 Products</string>
+    <string name="item_5">Beauty,Books \u0026 Products</string>
     <string name="action_settings">Settings</string>
     <string name="action_search">Search</string>
     <string name="action_cart">Cart</string>
@@ -39,5 +38,6 @@
     <string name="button">Button</string>
     <string name="web_site">Web Site</string>
     <string name="title_activity_login_page">LoginPage</string>
+    <string name="check">Check</string>
 
 </resources>

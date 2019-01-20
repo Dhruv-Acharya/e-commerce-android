@@ -25,7 +25,6 @@ import com.onboarding.ecomm.Fragment.ElectronicsFragment;
 import com.onboarding.ecomm.Fragment.FashionFragment;
 import com.onboarding.ecomm.Fragment.HomeFragment;
 import com.onboarding.ecomm.Fragment.MobileFragment;
-import com.onboarding.ecomm.Fragment.TvFragment;
 import com.onboarding.ecomm.Login.LoginPage;
 import com.onboarding.ecomm.R;
 
@@ -66,14 +65,10 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent(MainActivity.this, LoginPage.class);
+                startActivity(intent);
             }
         });
 
-        /*recyclerView = findViewById(R.id.recyclerView);
-        GridLayoutManager gridLayoutManager = new GridLayoutManager(recyclerView.getContext(), 2);
-        recyclerView.setLayoutManager(gridLayoutManager);
-        CardViewAdapter cardViewAdapter = new CardViewAdapter(nameList, logos);
-        recyclerView.setAdapter(cardViewAdapter);*/
 
         viewPager = findViewById(R.id.viewpager);
         tabLayout = findViewById(R.id.tabs);
@@ -137,9 +132,8 @@ public class MainActivity extends AppCompatActivity
             viewPager.setCurrentItem(3);
         } else if (itemId == R.id.nav_item5) {
             viewPager.setCurrentItem(4);
-        } else if (itemId == R.id.nav_item6) {
-            viewPager.setCurrentItem(5);
         }
+
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
@@ -150,11 +144,10 @@ public class MainActivity extends AppCompatActivity
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
         adapter.addFragment(new ElectronicsFragment(), getString(R.string.item_1));
-        adapter.addFragment(new TvFragment(), getString(R.string.item_2));
+        adapter.addFragment(new MobileFragment(), getString(R.string.item_2));
         adapter.addFragment(new FashionFragment(), getString(R.string.item_3));
         adapter.addFragment(new HomeFragment(), getString(R.string.item_4));
-        adapter.addFragment(new MobileFragment(), getString(R.string.item_5));
-        adapter.addFragment(new BBPFragment(), getString(R.string.item_6));
+        adapter.addFragment(new BBPFragment(), getString(R.string.item_5));
         viewPager.setAdapter(adapter);
 
     }
