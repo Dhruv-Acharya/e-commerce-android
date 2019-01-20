@@ -33,5 +33,8 @@
     <string name="contact_us">Contact Us</string>
     <string name="terms_conditions">Terms \u0026 Conditions</string>
     <string name="help_center">Help Center</string>
+    <string name="your_cart_is_empty">Your cart is empty</string>
+    <string name="shop_now">Shop Now</string>
+    <string name="cart">Cart</string>
 
 </resources>

@@ -1,5 +1,6 @@
-package com.onboarding.ecomm;
+package com.onboarding.ecomm.Main;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
@@ -18,6 +19,13 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.onboarding.ecomm.Adapters.CardViewAdapter;
+import com.onboarding.ecomm.Fragment.BBPFragment;
+import com.onboarding.ecomm.Fragment.ElectronicsFragment;
+import com.onboarding.ecomm.Fragment.FashionFragment;
+import com.onboarding.ecomm.Fragment.HomeFragment;
+import com.onboarding.ecomm.Fragment.MobileFragment;
+import com.onboarding.ecomm.Fragment.TvFragment;
+import com.onboarding.ecomm.R;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -94,7 +102,7 @@ public class MainActivity extends AppCompatActivity
             //startActivity(new Intent(MainActivity.this, SearchResultActivity.class));
             return true;
         } else if (id == R.id.action_cart) {
-            //    startActivity(new Intent(MainActivity.this, CartListActivity.class));
+             startActivity(new Intent(MainActivity.this, CartListActivity.class));
             return true;
         } else {
 //            startActivity(new Intent(MainActivity.this, EmptyActivity.class));
