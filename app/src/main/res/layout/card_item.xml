@@ -11,6 +11,10 @@
     android:layout_marginBottom="4.0dp"
     app:cardBackgroundColor="#999"
     app:cardElevation="20dp"
+    android:id="@+id/card"
+    android:clickable="true"
+    app:cardCornerRadius="10dp"
+    android:foreground="?android:attr/selectableItemBackground">
     app:contentPadding="20dp"
     card_view:cardCornerRadius="2dp">
 

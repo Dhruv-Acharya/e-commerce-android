@@ -3,6 +3,9 @@
 
 
     <string name="hello_world">Hello world!</string>
+    <string name="next">NEXT</string>
+    <string name="skip">SKIP</string>
+    <string name="start">GOT IT</string>
 
     <string name="email">Email Id</string>
     <string name="passowrd">Password</string>
