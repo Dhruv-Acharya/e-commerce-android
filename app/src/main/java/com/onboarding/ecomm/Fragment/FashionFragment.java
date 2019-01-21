@@ -1,5 +1,6 @@
 package com.onboarding.ecomm.Fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
@@ -9,6 +10,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.onboarding.ecomm.Adapters.CardViewAdapter;
+import com.onboarding.ecomm.Adapters.Icommunicator;
+import com.onboarding.ecomm.ProductDetails.ProductPage;
 import com.onboarding.ecomm.R;
 
 import java.util.ArrayList;
@@ -17,7 +20,7 @@ import java.util.Arrays;
 import static com.onboarding.ecomm.R.drawable;
 import static com.onboarding.ecomm.R.layout;
 
-public class FashionFragment extends Fragment {
+public class FashionFragment extends Fragment implements Icommunicator {
     ArrayList logos = new ArrayList<>(Arrays.asList(drawable.splash_icon, drawable.splash_icon, drawable.splash_icon, drawable.splash_icon,
             drawable.splash_icon, drawable.splash_icon, drawable.splash_icon, drawable.splash_icon, drawable.splash_icon,
             drawable.splash_icon));
@@ -38,8 +41,14 @@ public class FashionFragment extends Fragment {
         recyclerView.setLayoutManager(gridLayoutManager);
         CardViewAdapter cardViewAdapter = new CardViewAdapter(nameList, logos);
         recyclerView.setAdapter(cardViewAdapter);
+        cardViewAdapter.setIcommunicator(this);
         return view;
     }
 
 
+    @Override
+    public void navigate(int position) {
+        Intent intent=new Intent(getContext(), ProductPage.class);
+        startActivity(intent);
+    }
 }

@@ -15,6 +15,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -27,6 +28,7 @@ import com.onboarding.ecomm.Fragment.FashionFragment;
 import com.onboarding.ecomm.Fragment.HomeFragment;
 import com.onboarding.ecomm.Fragment.MobileFragment;
 import com.onboarding.ecomm.Login.LoginPage;
+import com.onboarding.ecomm.ProductDetails.ProductPage;
 import com.onboarding.ecomm.R;
 
 import java.util.ArrayList;
@@ -45,6 +47,7 @@ public class MainActivity extends AppCompatActivity
     private ViewPager viewPager;
     private TabLayout tabLayout;
     private FloatingActionButton floatingActionButton;
+    private CardView cardView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,6 +73,7 @@ public class MainActivity extends AppCompatActivity
                 startActivity(intent);
             }
         });
+
 
 
         viewPager = findViewById(R.id.viewpager);
