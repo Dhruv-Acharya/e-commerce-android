@@ -3,7 +3,7 @@
 
     <!-- When item pressed this item will be triggered -->
     <item android:state_pressed="true"><shape android:shape="rectangle">
-        <corners android:radius="8dp" />
+        <corners android:radius="10dp" />
 
         <bold >
         <solid android:color="@color/white" />
@@ -13,10 +13,10 @@
 
     <!-- By default the background will be this item -->
     <item><shape android:shape="rectangle">
-        <corners android:radius="5dp" />
+        <corners android:radius="10dp" />
 
 
-        <solid android:color="@color/background_color" />
+        <solid android:color="@color/button_color" />
 
     </shape></item>
 

@@ -22,7 +22,7 @@ public class ProductPage extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.product_details);
+        setContentView(R.layout.product_page);
 
         String imageUrl="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJeNNhKT2LFUYO9SnxIdLcyksrulnikVUFsv7Ypru8Qs3e9HFB";
         imageView= findViewById(R.id.product_image);
