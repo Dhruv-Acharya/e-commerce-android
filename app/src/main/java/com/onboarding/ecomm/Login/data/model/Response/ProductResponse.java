@@ -1,4 +1,4 @@
-package com.onboarding.ecomm.Login.data.model;
+package com.onboarding.ecomm.Login.data.model.Response;
 
 //import javax.annotation.Generated;
 

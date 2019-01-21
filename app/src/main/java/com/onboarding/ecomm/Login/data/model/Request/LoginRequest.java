@@ -1,17 +1,17 @@
-package com.onboarding.ecomm.Login.data.model;
+package com.onboarding.ecomm.Login.data.model.Request;
 
 import com.google.gson.annotations.SerializedName;
 
 //import javax.annotation.Generated;
 
 //@Generated("com.robohorse.robopojogenerator")
-public class LoginResponse {
+public class LoginRequest {
 
     @SerializedName("password")
     private String password;
 
-    @SerializedName("name")
-    private String name;
+    @SerializedName("email")
+    private String email;
 
     public String getPassword() {
         return password;
@@ -21,20 +21,20 @@ public class LoginResponse {
         this.password = password;
     }
 
-    public String getName() {
-        return name;
+    public String getEmail() {
+        return email;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     @Override
     public String toString() {
         return
-                "LoginResponse{" +
+                "LoginRequest{" +
                         "password = '" + password + '\'' +
-                        ",name = '" + name + '\'' +
+                        ",email = '" + email + '\'' +
                         "}";
     }
 }

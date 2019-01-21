@@ -1,5 +1,6 @@
 package com.onboarding.ecomm.Login;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -7,9 +8,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.View.OnClickListener;
 
+import com.onboarding.ecomm.Main.MainActivity;
 import com.onboarding.ecomm.R;
 
-public class LoginPage extends AppCompatActivity {
+public class LoginPage extends AppCompatActivity implements Communicator{
 	private static FragmentManager fragmentManager;
 
 	@Override
@@ -18,13 +20,19 @@ public class LoginPage extends AppCompatActivity {
 		setContentView(R.layout.login_page);
 		fragmentManager = getSupportFragmentManager();
 
+		Login_Fragment login_fragment = new Login_Fragment();
 		// If savedinstnacestate is null then replace login fragment
 		if (savedInstanceState == null) {
 			fragmentManager
 					.beginTransaction()
-					.replace(R.id.frameContainer, new Login_Fragment(),
+					.replace(R.id.frameContainer, login_fragment,
 							Utils.Login_Fragment).commit();
 		}
+
+		login_fragment.setCommunicator(this);
+
+
+
 
 		// On close icon click finish activity
 		findViewById(R.id.close_activity).setOnClickListener(
@@ -67,5 +75,11 @@ public class LoginPage extends AppCompatActivity {
 			replaceLoginFragment();
 		else
 			super.onBackPressed();
+	}
+
+	@Override
+	public void navigateToMain() {
+		Intent intent=new Intent(LoginPage.this, MainActivity.class);
+		startActivity(intent);
 	}
 }
