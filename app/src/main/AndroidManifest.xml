@@ -7,7 +7,7 @@
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher_foreground"
-        android:label="@string/app_name"
+        android:label="LELO.COM"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
@@ -34,7 +34,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ProductDetails.ProductPage"/>
+        <activity android:name=".ProductDetails.ProductPage"
+            android:parentActivityName=".Main.MainActivity" />
     </application>
 
 </manifest>
