@@ -23,4 +23,45 @@
     <string name="submit">SUBMIT</string>
     <string name="back">BACK</string>
 
+</resources>    <string name="app_name">LELO.COM</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="open_drawer"></string>
+    <string name="close_drawer"></string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">LELO.COM</string>
+    <string name="nav_header_subtitle">You\'ll find it here!</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="item_1">Electronics</string>
+    <string name="item_2">Mobile \u0026 Tablets</string>
+    <string name="item_3">Fashion</string>
+    <string name="item_4">Home \u0026 Furniture</string>
+    <string name="item_5">Beauty,Books \u0026 Products</string>
+    <string name="action_settings">Settings</string>
+    <string name="action_search">Search</string>
+    <string name="action_cart">Cart</string>
+    <string name="action_notifications">Notifications</string>
+
+    <string name="my_profile">My Profile</string>
+    <string name="my_rewards">My Rewards</string>
+    <string name="my_orders">My Orders</string>
+    <string name="my_cart">My Cart</string>
+    <string name="my_wishlist">My Wishlist</string>
+    <string name="my_account">My Account</string>
+
+    <string name="help_support">Help \u0026 Support</string>
+    <string name="contact_us">Contact Us</string>
+    <string name="terms_conditions">Terms \u0026 Conditions</string>
+    <string name="help_center">Help Center</string>
+    <string name="your_cart_is_empty">Your cart is empty</string>
+    <string name="shop_now">Shop Now</string>
+    <string name="cart">Cart</string>
+    <string name="button">Button</string>
+    <string name="web_site">Web Site</string>
+    <string name="title_activity_login_page">LoginPage</string>
+    <string name="check">Check</string>
+    <string name="icon">icon</string>
+
 </resources>
