@@ -16,7 +16,8 @@
             android:name=".Login.LoginPage"
             android:label="@string/title_activity_login_page"
             android:parentActivityName=".Main.MainActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+             />
         <activity
             android:name=".Main.CartListActivity"
             android:parentActivityName=".Main.MainActivity" />
@@ -26,7 +27,7 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Main.SplashScreenActivity"
-            android:theme="@style/SplashTheme">
+            android:theme="@style/AppTheme.NoActionBar">
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
