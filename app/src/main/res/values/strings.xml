@@ -24,6 +24,9 @@
     <string name="back">BACK</string>
 
 </resources>    <string name="app_name">LELO.COM</string>
+=======
+    <string name="app_name">LELO.COM</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="open_drawer"></string>
