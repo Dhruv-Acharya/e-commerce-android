@@ -14,7 +14,10 @@
         android:textColor="@color/white_greyish"
         android:textSize="25sp"
         android:textStyle="bold" />
-
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/TextLabel">
     <EditText
         android:id="@+id/fullName"
         android:layout_width="fill_parent"
@@ -31,12 +34,17 @@
         android:textColor="@color/white"
         android:textColorHint="@color/white"
         android:textSize="16sp" />
+    </android.support.design.widget.TextInputLayout>
 
     <View
         android:layout_width="fill_parent"
         android:layout_height="1px"
         android:background="@color/white_greyish" />
 
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/TextLabel">
     <EditText
         android:id="@+id/userEmailId"
         android:layout_width="fill_parent"
@@ -53,12 +61,17 @@
         android:textColor="@color/white"
         android:textColorHint="@color/white"
         android:textSize="16sp" />
+    </android.support.design.widget.TextInputLayout>
 
     <View
         android:layout_width="fill_parent"
         android:layout_height="1px"
         android:background="@color/white_greyish" />
 
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/TextLabel">
     <EditText
         android:id="@+id/mobileNumber"
         android:layout_width="fill_parent"
@@ -75,13 +88,16 @@
         android:textColor="@color/white"
         android:textColorHint="@color/white"
         android:textSize="16sp" />
-
+    </android.support.design.widget.TextInputLayout>
     <View
         android:layout_width="fill_parent"
         android:layout_height="1px"
         android:background="@color/white_greyish" />
 
-
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/TextLabel">
     <EditText
         android:id="@+id/password"
         android:layout_width="fill_parent"
@@ -98,12 +114,15 @@
         android:textColor="@color/white"
         android:textColorHint="@color/white"
         android:textSize="16sp" />
-
+    </android.support.design.widget.TextInputLayout>
     <View
         android:layout_width="fill_parent"
         android:layout_height="1px"
         android:background="@color/white_greyish" />
-
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/TextLabel">
     <EditText
         android:id="@+id/confirmPassword"
         android:layout_width="fill_parent"
@@ -120,6 +139,7 @@
         android:textColor="@color/white"
         android:textColorHint="@color/white"
         android:textSize="16sp" />
+    </android.support.design.widget.TextInputLayout>
 
     <CheckBox
         android:id="@+id/terms_conditions"
@@ -127,6 +147,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="7dp"
         android:text="@string/terms_conditions"
+        android:buttonTint="@color/white"
         android:textColor="@color/white"
         android:textSize="14sp" />
 
