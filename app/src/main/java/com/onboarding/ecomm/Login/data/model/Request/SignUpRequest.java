@@ -1,10 +1,10 @@
-package com.onboarding.ecomm.Login.data.model;
+package com.onboarding.ecomm.Login.data.model.Request;
 
 //import javax.annotation.Generated;
 import com.google.gson.annotations.SerializedName;
 
 //@Generated("com.robohorse.robopojogenerator")
-public class SignUpResponse {
+public class SignUpRequest {
 
 	@SerializedName("password")
 	private String password;
@@ -53,7 +53,7 @@ public class SignUpResponse {
 	@Override
  	public String toString(){
 		return 
-			"SignUpResponse{" +
+			"SignUpRequest{" +
 			"password = '" + password + '\'' + 
 			",phoneNumber = '" + phoneNumber + '\'' + 
 			",name = '" + name + '\'' + 

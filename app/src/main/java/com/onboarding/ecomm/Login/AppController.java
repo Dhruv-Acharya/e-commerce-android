@@ -18,10 +18,11 @@ public class AppController extends Application {
             OkHttpClient client = new OkHttpClient.Builder().build();
 
             retrofit = new Retrofit.Builder()
-                    .baseUrl("https://www.blibli.com/backend/mobile/")
+                    .baseUrl("https://customer-lelo.herokuapp.com/")
                     .addConverterFactory(GsonConverterFactory.create())
                     .client(client)
                     .build();
+
         }
     }
 }
