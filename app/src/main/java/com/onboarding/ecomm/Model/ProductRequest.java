@@ -118,7 +118,7 @@ public class ProductRequest {
     @Override
     public String toString() {
         return
-                "ProductResponse{" +
+                "ProductRequest{" +
                         "quantity = '" + quantity + '\'' +
                         ",usp = '" + usp + '\'' +
                         ",productId = '" + productId + '\'' +

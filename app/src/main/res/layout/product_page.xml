@@ -58,7 +58,7 @@
 
 
             <TextView
-                android:id="@+id/textView"
+                android:id="@+id/product_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -74,6 +74,7 @@
                 tools:text="@android:string/unknownName" />
 
             <com.cepheuen.elegantnumberbutton.view.ElegantNumberButton
+                android:id="@+id/quantity"
                 android:layout_width="100dp"
                 android:layout_height="30dp"
                 android:layout_marginStart="111dp"
@@ -95,7 +96,7 @@
 
 
             <TextView
-                android:id="@+id/ProductPrice"
+                android:id="@+id/product_price"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -113,7 +114,7 @@
 
 
             <TextView
-                android:id="@+id/textView3"
+                android:id="@+id/usp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -237,7 +238,7 @@
           app:layout_constraintTop_toBottomOf="@+id/cardView2">
 
          <TextView
-             android:id="@+id/Description"
+             android:id="@+id/description"
              android:layout_width="match_parent"
              android:layout_height="wrap_content"
              android:layout_margin="32dp"

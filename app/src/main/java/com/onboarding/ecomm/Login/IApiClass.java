@@ -16,4 +16,5 @@ public interface IApiClass {
     @POST("customer/add")
     public Call<Void> signUp(@Body SignUpRequest signUpRequest);
 
+
 }

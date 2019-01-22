@@ -7,7 +7,9 @@ import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.onboarding.ecomm.R;
@@ -18,11 +20,14 @@ import java.util.List;
 
 public class ProductPage extends AppCompatActivity {
     private ImageView imageView;
+    private static TextView
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.product_page);
+
+
 
         String imageUrl="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJeNNhKT2LFUYO9SnxIdLcyksrulnikVUFsv7Ypru8Qs3e9HFB";
         imageView= findViewById(R.id.product_image);
