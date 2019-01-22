@@ -30,6 +30,8 @@ import com.onboarding.ecomm.Fragment.MobileFragment;
 import com.onboarding.ecomm.Login.LoginPage;
 import com.onboarding.ecomm.ProductDetails.ProductPage;
 import com.onboarding.ecomm.R;
+import com.onboarding.ecomm.SearchResultActivity;
+import com.onboarding.ecomm.notification.NotificationCountSetClass;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -48,6 +50,7 @@ public class MainActivity extends AppCompatActivity
     private TabLayout tabLayout;
     private FloatingActionButton floatingActionButton;
     private CardView cardView;
+    public static int notificationCountCart = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -102,6 +105,7 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
@@ -110,7 +114,7 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.action_search) {
-            //startActivity(new Intent(MainActivity.this, SearchResultActivity.class));
+            startActivity(new Intent(MainActivity.this, SearchResultActivity.class));
             return true;
         } else if (id == R.id.action_cart) {
             startActivity(new Intent(MainActivity.this, CartListActivity.class));
@@ -119,9 +123,12 @@ public class MainActivity extends AppCompatActivity
             Uri uri = Uri.parse("http://www.google.com");
             Intent intent = new Intent(Intent.ACTION_VIEW, uri);
             startActivity(intent);
+        }else {
+            startActivity(new Intent(MainActivity.this, EmptyActivity.class));
         }
 
-        return super.onOptionsItemSelected(item);
+
+            return super.onOptionsItemSelected(item);
     }
 
     @SuppressWarnings("StatementWithEmptyBody")
