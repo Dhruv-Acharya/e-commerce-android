@@ -1,10 +1,12 @@
 package com.onboarding.ecomm.Main;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.LinearLayout;
@@ -21,16 +23,26 @@ public class SplashScreenActivity extends AppCompatActivity implements Animation
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.splash_screen);
+        if (Build.VERSION.SDK_INT < 16) {
+            getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                    WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
-        animFadeIn = AnimationUtils.loadAnimation(getApplicationContext(),
-                R.anim.animation_fade_in);
-        // set animation listener
-        animFadeIn.setAnimationListener(this);
-        // animation for image
-        constraintLayout =  findViewById(R.id.layout_constraint);
-        // start the animation
-        constraintLayout.setVisibility(View.VISIBLE);
-        constraintLayout.startAnimation(animFadeIn);
+        } else {
+            View decorView = getWindow().getDecorView();
+            // Hide the status bar.
+            int uiOptions = View.SYSTEM_UI_FLAG_FULLSCREEN;
+            decorView.setSystemUiVisibility(uiOptions);
+
+            animFadeIn = AnimationUtils.loadAnimation(getApplicationContext(),
+                    R.anim.animation_fade_in);
+            // set animation listener
+            animFadeIn.setAnimationListener(this);
+            // animation for image
+            constraintLayout = findViewById(R.id.layout_constraint);
+            // start the animation
+            constraintLayout.setVisibility(View.VISIBLE);
+            constraintLayout.startAnimation(animFadeIn);
+        }
     }
 
 
@@ -47,7 +59,7 @@ public class SplashScreenActivity extends AppCompatActivity implements Animation
 
     public void onAnimationEnd(Animation animation) {
         // Start Main Screen
-        Intent i = new Intent(SplashScreenActivity.this, MainActivity.class);
+        Intent i = new Intent(SplashScreenActivity.this, WelcomeActivity.class);
         startActivity(i);
         this.finish();
     }

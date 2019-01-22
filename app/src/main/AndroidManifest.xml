@@ -19,18 +19,24 @@
             android:name=".Login.LoginPage"
             android:label="@string/title_activity_login_page"
             android:parentActivityName=".Main.MainActivity"
-            android:theme="@style/AppTheme.NoActionBar"
+            android:theme="@style/AppTheme.ActionBar"
              />
         <activity
             android:name=".Main.CartListActivity"
-            android:parentActivityName=".Main.MainActivity" />
+            android:parentActivityName=".Main.MainActivity"/>
+        <activity
+            android:name=".Main.WelcomeActivity"
+
+            android:theme="@style/AppTheme.ActionBar">
+        </activity>
+
         <activity
             android:name=".Main.MainActivity"
             android:label="@string/title_activity_main"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.ActionBar" />
         <activity
             android:name=".Main.SplashScreenActivity"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme.ActionBar">
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -39,7 +45,21 @@
             </intent-filter>
         </activity>
         <activity android:name=".ProductDetails.ProductPage"
-            android:parentActivityName=".Main.MainActivity" />
+            android:parentActivityName=".Main.MainActivity"
+            android:theme="@style/AppTheme.ActionBar"/>
+        <activity
+            android:name=".SearchResultActivity"
+            android:parentActivityName=".Main.MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH"/>
+
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable"/>
+        </activity>
     </application>
 
 </manifest>

@@ -2,6 +2,7 @@ package com.onboarding.ecomm.Main;
 
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 
@@ -30,6 +31,7 @@ import com.onboarding.ecomm.Fragment.MobileFragment;
 import com.onboarding.ecomm.Login.LoginPage;
 import com.onboarding.ecomm.ProductDetails.ProductPage;
 import com.onboarding.ecomm.R;
+import com.onboarding.ecomm.SearchResultActivity;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -49,7 +51,7 @@ public class MainActivity extends AppCompatActivity
     private TabLayout tabLayout;
     private FloatingActionButton floatingActionButton;
     private CardView cardView;
-    public static int notificationCountCart=0;
+    public static int notificationCountCart = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +60,8 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = findViewById(R.id.toolbar);
         toolbar.setTitle("LELO.COM");
         setSupportActionBar(toolbar);
+
+
 
         drawer = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -107,12 +111,12 @@ public class MainActivity extends AppCompatActivity
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up buttongit , so long
+        // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
         if (id == R.id.action_search) {
-         //   startActivity(new Intent(MainActivity.this, SearchResultActivity.class));
+            startActivity(new Intent(MainActivity.this, SearchResultActivity.class));
             return true;
         } else if (id == R.id.action_cart) {
             startActivity(new Intent(MainActivity.this, CartListActivity.class));
@@ -121,6 +125,8 @@ public class MainActivity extends AppCompatActivity
             Uri uri = Uri.parse("http://www.google.com");
             Intent intent = new Intent(Intent.ACTION_VIEW, uri);
             startActivity(intent);
+        }else {
+            startActivity(new Intent(MainActivity.this, EmptyActivity.class));
         }
 
         return super.onOptionsItemSelected(item);
