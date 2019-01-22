@@ -8,6 +8,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class AppController extends Application {
     public static Retrofit retrofit = null;
+    public static Retrofit retrofitProduct = null;
 
     @Override
     public void onCreate() {
@@ -24,5 +25,19 @@ public class AppController extends Application {
                     .build();
 
         }
+
+        if (null == retrofitProduct) {
+
+            OkHttpClient client = new OkHttpClient.Builder().build();
+
+            retrofitProduct = new Retrofit.Builder()
+                    .baseUrl("https://product-lelo.herokuapp.com/")
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .client(client)
+                    .build();
+
+        }
     }
+
+
 }

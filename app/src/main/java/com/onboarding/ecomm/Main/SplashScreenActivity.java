@@ -9,8 +9,6 @@ import android.view.View;
 import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 
 import com.onboarding.ecomm.R;
 
@@ -29,17 +27,12 @@ public class SplashScreenActivity extends AppCompatActivity implements Animation
 
         } else {
             View decorView = getWindow().getDecorView();
-            // Hide the status bar.
             int uiOptions = View.SYSTEM_UI_FLAG_FULLSCREEN;
             decorView.setSystemUiVisibility(uiOptions);
-
             animFadeIn = AnimationUtils.loadAnimation(getApplicationContext(),
                     R.anim.animation_fade_in);
-            // set animation listener
             animFadeIn.setAnimationListener(this);
-            // animation for image
             constraintLayout = findViewById(R.id.layout_constraint);
-            // start the animation
             constraintLayout.setVisibility(View.VISIBLE);
             constraintLayout.startAnimation(animFadeIn);
         }
@@ -54,11 +47,9 @@ public class SplashScreenActivity extends AppCompatActivity implements Animation
 
     @Override
     public void onAnimationStart(Animation animation) {
-        //under Implementation
     }
 
     public void onAnimationEnd(Animation animation) {
-        // Start Main Screen
         Intent i = new Intent(SplashScreenActivity.this, WelcomeActivity.class);
         startActivity(i);
         this.finish();
@@ -66,7 +57,6 @@ public class SplashScreenActivity extends AppCompatActivity implements Animation
 
     @Override
     public void onAnimationRepeat(Animation animation) {
-        //under Implementation
     }
 }
 

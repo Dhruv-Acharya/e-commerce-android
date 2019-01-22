@@ -4,9 +4,8 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-
-import android.support.design.widget.TabLayout;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -22,34 +21,33 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-import com.onboarding.ecomm.Fragment.BBPFragment;
 import com.onboarding.ecomm.Fragment.ElectronicsFragment;
-import com.onboarding.ecomm.Fragment.FashionFragment;
-import com.onboarding.ecomm.Fragment.HomeFragment;
-import com.onboarding.ecomm.Fragment.MobileFragment;
+import com.onboarding.ecomm.Login.AppController;
+import com.onboarding.ecomm.Login.IApiClass;
 import com.onboarding.ecomm.Login.LoginPage;
+import com.onboarding.ecomm.Model.Response.Category;
 import com.onboarding.ecomm.R;
 import com.onboarding.ecomm.Search.SearchResultActivity;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    public static String tokenId=null;
-    ArrayList logos = new ArrayList<>(Arrays.asList(R.drawable.splash_icon, R.drawable.splash_icon, R.drawable.splash_icon, R.drawable.splash_icon,
-            R.drawable.splash_icon, R.drawable.splash_icon, R.drawable.splash_icon, R.drawable.splash_icon, R.drawable.splash_icon,
-            R.drawable.splash_icon));
-    ArrayList<String> nameList = new ArrayList(Arrays.asList("1", "2", "3", "4", "5", "6", "DD", "Divanshu", "Anshu", "Srivastava"));
+    public static String tokenId = null;
+    public static int notificationCountCart = 0;
     private RecyclerView recyclerView;
     private DrawerLayout drawer;
     private ViewPager viewPager;
     private TabLayout tabLayout;
     private FloatingActionButton floatingActionButton;
     private CardView cardView;
-    public static int notificationCountCart = 0;
+    private IApiClass iApiClass;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,8 +56,6 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = findViewById(R.id.toolbar);
         toolbar.setTitle("LELO.COM");
         setSupportActionBar(toolbar);
-
-
 
         drawer = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -79,12 +75,24 @@ public class MainActivity extends AppCompatActivity
         });
 
 
-
         viewPager = findViewById(R.id.viewpager);
         tabLayout = findViewById(R.id.tabs);
 
+        iApiClass = AppController.retrofitProduct.create(IApiClass.class);
+        iApiClass.getAllCategory().enqueue(new Callback<List<Category>>() {
+            @Override
+            public void onResponse(Call<List<Category>> call, Response<List<Category>> response) {
+                if (response.isSuccessful()) {
+                    setupViewPager(viewPager, response.body());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<Category>> call, Throwable t) {
+
+            }
+        });
         if (viewPager != null) {
-            setupViewPager(viewPager);
             tabLayout.setupWithViewPager(viewPager);
         }
     }
@@ -101,18 +109,13 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
         if (id == R.id.action_search) {
             startActivity(new Intent(MainActivity.this, SearchResultActivity.class));
             return true;
@@ -123,10 +126,9 @@ public class MainActivity extends AppCompatActivity
             Uri uri = Uri.parse("http://www.google.com");
             Intent intent = new Intent(Intent.ACTION_VIEW, uri);
             startActivity(intent);
-        }else {
+        } else {
             startActivity(new Intent(MainActivity.this, EmptyActivity.class));
         }
-
         return super.onOptionsItemSelected(item);
     }
 
@@ -134,19 +136,19 @@ public class MainActivity extends AppCompatActivity
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         int itemId = item.getItemId();
-        if (itemId == R.id.nav_item1) {
-            viewPager.setCurrentItem(0);
-        } else if (itemId == R.id.nav_item2) {
-            viewPager.setCurrentItem(1);
-        } else if (itemId == R.id.nav_item3) {
-            viewPager.setCurrentItem(2);
-        } else if (itemId == R.id.nav_item4) {
-            viewPager.setCurrentItem(3);
-        } else if (itemId == R.id.nav_item5) {
-            viewPager.setCurrentItem(4);
-        }else if (itemId == R.id.my_cart) {
-            startActivity(new Intent(MainActivity.this, CartListActivity.class));
-        }
+//        if (itemId == R.id.nav_item1) {
+//            viewPager.setCurrentItem(0);
+//        } else if (itemId == R.id.nav_item2) {
+//            viewPager.setCurrentItem(1);
+//        } else if (itemId == R.id.nav_item3) {
+//            viewPager.setCurrentItem(2);
+//        } else if (itemId == R.id.nav_item4) {
+//            viewPager.setCurrentItem(3);
+//        } else if (itemId == R.id.nav_item5) {
+//            viewPager.setCurrentItem(4);
+//        }else if (itemId == R.id.my_cart) {
+//            startActivity(new Intent(MainActivity.this, CartListActivity.class));
+//        }
 
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
@@ -155,13 +157,11 @@ public class MainActivity extends AppCompatActivity
 
     }
 
-    private void setupViewPager(ViewPager viewPager) {
+    private void setupViewPager(ViewPager viewPager, List<Category> categoryList) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFragment(new ElectronicsFragment(), getString(R.string.item_1));
-        adapter.addFragment(new MobileFragment(), getString(R.string.item_2));
-        adapter.addFragment(new FashionFragment(), getString(R.string.item_3));
-        adapter.addFragment(new HomeFragment(), getString(R.string.item_4));
-        adapter.addFragment(new BBPFragment(), getString(R.string.item_5));
+        for (int i = 0; i < categoryList.size(); i++) {
+            adapter.addFragment(ElectronicsFragment.getElectronicsFragmentInstance(categoryList.get(i).getCategoryId()), categoryList.get(i).getName());
+        }
         viewPager.setAdapter(adapter);
 
     }
