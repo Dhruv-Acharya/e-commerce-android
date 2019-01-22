@@ -21,6 +21,8 @@ public class LoginPage extends AppCompatActivity implements Communicator{
 		fragmentManager = getSupportFragmentManager();
 
 		Login_Fragment login_fragment = new Login_Fragment();
+		SignUp_Fragment signUp_fragment= new SignUp_Fragment();
+
 		// If savedinstnacestate is null then replace login fragment
 		if (savedInstanceState == null) {
 			fragmentManager
@@ -30,6 +32,8 @@ public class LoginPage extends AppCompatActivity implements Communicator{
 		}
 
 		login_fragment.setCommunicator(this);
+		signUp_fragment.setCommunicator(this);
+
 
 
 
@@ -62,6 +66,8 @@ public class LoginPage extends AppCompatActivity implements Communicator{
 		// Find the tag of signup and forgot password fragment
 		Fragment SignUp_Fragment = fragmentManager
 				.findFragmentByTag(Utils.SignUp_Fragment);
+
+
 		Fragment ForgotPassword_Fragment = fragmentManager
 				.findFragmentByTag(Utils.ForgotPassword_Fragment);
 

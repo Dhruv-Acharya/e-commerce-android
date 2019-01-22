@@ -30,8 +30,6 @@ import com.onboarding.ecomm.Fragment.MobileFragment;
 import com.onboarding.ecomm.Login.LoginPage;
 import com.onboarding.ecomm.ProductDetails.ProductPage;
 import com.onboarding.ecomm.R;
-import com.onboarding.ecomm.SearchResultActivity;
-import com.onboarding.ecomm.notification.NotificationCountSetClass;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -40,6 +38,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    public static String tokenId=null;
     ArrayList logos = new ArrayList<>(Arrays.asList(R.drawable.splash_icon, R.drawable.splash_icon, R.drawable.splash_icon, R.drawable.splash_icon,
             R.drawable.splash_icon, R.drawable.splash_icon, R.drawable.splash_icon, R.drawable.splash_icon, R.drawable.splash_icon,
             R.drawable.splash_icon));
@@ -105,7 +104,6 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
@@ -127,8 +125,7 @@ public class MainActivity extends AppCompatActivity
             startActivity(new Intent(MainActivity.this, EmptyActivity.class));
         }
 
-
-            return super.onOptionsItemSelected(item);
+        return super.onOptionsItemSelected(item);
     }
 
     @SuppressWarnings("StatementWithEmptyBody")

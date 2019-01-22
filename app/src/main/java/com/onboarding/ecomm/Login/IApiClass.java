@@ -13,7 +13,7 @@ public interface IApiClass {
     @POST("/customer/login")
     public Call<Void> logIn(@Body LoginRequest loginRequest);
 
-    @POST("signup")
+    @POST("customer/add")
     public Call<Void> signUp(@Body SignUpRequest signUpRequest);
 
 }

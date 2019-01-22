@@ -35,6 +35,8 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import static com.onboarding.ecomm.Main.MainActivity.tokenId;
+
 public class Login_Fragment extends Fragment implements OnClickListener {
     public static Communicator communicator;
     private static View view;
@@ -177,7 +179,7 @@ public class Login_Fragment extends Fragment implements OnClickListener {
 
         //showProgress(true);
         // Get email id and password
-        String getEmailId = emailid.getText().toString();
+        final String getEmailId = emailid.getText().toString();
         String getPassword = password.getText().toString();
 
         // Check patter for email id
@@ -208,6 +210,7 @@ public class Login_Fragment extends Fragment implements OnClickListener {
                 @Override
                 public void onResponse(Call<Void> call, Response<Void> response) {
                     if (response.code() == 200) {
+                        tokenId=emailid.getText().toString();
                         communicator.navigateToMain();
 
 
