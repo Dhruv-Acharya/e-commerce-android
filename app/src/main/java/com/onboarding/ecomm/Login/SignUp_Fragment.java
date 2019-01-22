@@ -15,7 +15,7 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-import com.onboarding.ecomm.Login.data.model.Request.SignUpRequest;
+import com.onboarding.ecomm.Model.Request.SignUpRequest;
 import com.onboarding.ecomm.R;
 
 import java.util.regex.Matcher;

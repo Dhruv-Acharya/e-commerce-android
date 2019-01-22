@@ -2,7 +2,6 @@ package com.onboarding.ecomm.Main;
 
 import android.content.Intent;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 
@@ -29,9 +28,8 @@ import com.onboarding.ecomm.Fragment.FashionFragment;
 import com.onboarding.ecomm.Fragment.HomeFragment;
 import com.onboarding.ecomm.Fragment.MobileFragment;
 import com.onboarding.ecomm.Login.LoginPage;
-import com.onboarding.ecomm.ProductDetails.ProductPage;
 import com.onboarding.ecomm.R;
-import com.onboarding.ecomm.SearchResultActivity;
+import com.onboarding.ecomm.Search.SearchResultActivity;
 
 import java.util.ArrayList;
 import java.util.Arrays;

@@ -1,4 +1,4 @@
-package com.onboarding.ecomm.Login.data.model.Request;
+package com.onboarding.ecomm.Model.Request;
 
 //import javax.annotation.Generated;
 import com.google.gson.annotations.SerializedName;

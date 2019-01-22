@@ -1,5 +1,5 @@
 
-package com.onboarding.ecomm;
+package com.onboarding.ecomm.Search;
 
 import android.app.SearchManager;
 import android.content.Context;
@@ -10,6 +10,8 @@ import android.support.v7.widget.SearchView;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+
+import com.onboarding.ecomm.R;
 
 public class SearchResultActivity extends AppCompatActivity {
     @Override

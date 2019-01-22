@@ -1,7 +1,7 @@
 package com.onboarding.ecomm.Login;
 
-import com.onboarding.ecomm.Login.data.model.Request.LoginRequest;
-import com.onboarding.ecomm.Login.data.model.Request.SignUpRequest;
+import com.onboarding.ecomm.Model.Request.LoginRequest;
+import com.onboarding.ecomm.Model.Request.SignUpRequest;
 
 import retrofit2.Call;
 import retrofit2.http.Body;

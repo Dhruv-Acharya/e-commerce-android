@@ -25,7 +25,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.onboarding.ecomm.Login.data.model.Request.LoginRequest;
+import com.onboarding.ecomm.Model.Request.LoginRequest;
 import com.onboarding.ecomm.R;
 
 import java.util.regex.Matcher;

@@ -48,7 +48,7 @@
             android:parentActivityName=".Main.MainActivity"
             android:theme="@style/AppTheme.ActionBar"/>
         <activity
-            android:name=".SearchResultActivity"
+            android:name=".Search.SearchResultActivity"
             android:parentActivityName=".Main.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.SEARCH"/>
