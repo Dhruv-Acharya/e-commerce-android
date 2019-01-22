@@ -36,12 +36,12 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    ArrayList logos = new ArrayList<>(Arrays.asList(R.drawable.splash_icon, R.drawable.splash_icon, R.drawable.splash_icon, R.drawable.splash_icon,
-            R.drawable.splash_icon, R.drawable.splash_icon, R.drawable.splash_icon, R.drawable.splash_icon, R.drawable.splash_icon,
-            R.drawable.splash_icon));
     ArrayList<String> nameList = new ArrayList(Arrays.asList("1", "2", "3", "4", "5", "6", "DD", "Divanshu", "Anshu", "Srivastava"));
     private RecyclerView recyclerView;
     private DrawerLayout drawer;
+
+
+
     private ViewPager viewPager;
     private TabLayout tabLayout;
     private FloatingActionButton floatingActionButton;
