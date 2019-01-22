@@ -5,7 +5,7 @@ package com.onboarding.ecomm.Model.Request;
 import com.google.gson.annotations.SerializedName;
 
 //@Generated("com.robohorse.robopojogenerator")
-public class ProductRequest {
+public class ProductResponse {
 
     @SerializedName("quantity")
     private String quantity;
@@ -120,7 +120,7 @@ public class ProductRequest {
     @Override
     public String toString() {
         return
-                "ProductRequest{" +
+                "ProductResponse{" +
                         "quantity = '" + quantity + '\'' +
                         ",usp = '" + usp + '\'' +
                         ",productId = '" + productId + '\'' +
