@@ -28,7 +28,7 @@ import java.util.List;
 
 public class ProductPage extends AppCompatActivity {
     private ImageView imageView;
-    private static TextView
+    private static TextView textView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
