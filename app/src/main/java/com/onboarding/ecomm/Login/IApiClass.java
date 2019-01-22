@@ -4,6 +4,10 @@ import com.onboarding.ecomm.Model.Request.LoginRequest;
 import com.onboarding.ecomm.Model.Request.ProductResponse;
 import com.onboarding.ecomm.Model.Request.SignUpRequest;
 import com.onboarding.ecomm.Model.Response.SearchResponse;
+import com.onboarding.ecomm.Model.Response.Category;
+import com.onboarding.ecomm.Model.Response.ProductByCategoryResponce;
+
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -26,5 +30,9 @@ public interface IApiClass {
     @GET("product/{name}")
     public  Call<SearchResponse> getSearchResponse(@Path("name")String name);
 
+    @GET("/category/getAll")
+    public Call<List<Category>> getAllCategory();
 
+    @GET("/product/getByCategory/{categoryId}")
+    public Call<List<ProductByCategoryResponce>> getByCategory(@Path("categoryId") String categoryId);
 }
