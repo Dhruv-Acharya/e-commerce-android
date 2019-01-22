@@ -2,6 +2,7 @@ package com.onboarding.ecomm.Main;
 
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 
@@ -30,6 +31,7 @@ import com.onboarding.ecomm.Fragment.MobileFragment;
 import com.onboarding.ecomm.Login.LoginPage;
 import com.onboarding.ecomm.ProductDetails.ProductPage;
 import com.onboarding.ecomm.R;
+import com.onboarding.ecomm.SearchResultActivity;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -58,6 +60,8 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = findViewById(R.id.toolbar);
         toolbar.setTitle("LELO.COM");
         setSupportActionBar(toolbar);
+
+
 
         drawer = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
