@@ -38,6 +38,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    public static String tokenId=null;
     ArrayList logos = new ArrayList<>(Arrays.asList(R.drawable.splash_icon, R.drawable.splash_icon, R.drawable.splash_icon, R.drawable.splash_icon,
             R.drawable.splash_icon, R.drawable.splash_icon, R.drawable.splash_icon, R.drawable.splash_icon, R.drawable.splash_icon,
             R.drawable.splash_icon));
@@ -48,6 +49,7 @@ public class MainActivity extends AppCompatActivity
     private TabLayout tabLayout;
     private FloatingActionButton floatingActionButton;
     private CardView cardView;
+    public static int notificationCountCart=0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -110,7 +112,7 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.action_search) {
-            //startActivity(new Intent(MainActivity.this, SearchResultActivity.class));
+         //   startActivity(new Intent(MainActivity.this, SearchResultActivity.class));
             return true;
         } else if (id == R.id.action_cart) {
             startActivity(new Intent(MainActivity.this, CartListActivity.class));

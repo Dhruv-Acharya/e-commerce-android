@@ -9,8 +9,8 @@ public class SignUpRequest {
 	@SerializedName("password")
 	private String password;
 
-	@SerializedName("phoneNumber")
-	private String phoneNumber;
+	@SerializedName("phone")
+	private String phone;
 
 	@SerializedName("name")
 	private String name;
@@ -26,12 +26,12 @@ public class SignUpRequest {
 		return password;
 	}
 
-	public void setPhoneNumber(String phoneNumber){
-		this.phoneNumber = phoneNumber;
+	public void setPhone(String phone){
+		this.phone = phone;
 	}
 
-	public String getPhoneNumber(){
-		return phoneNumber;
+	public String getPhone(){
+		return phone;
 	}
 
 	public void setName(String name){
@@ -55,7 +55,7 @@ public class SignUpRequest {
 		return 
 			"SignUpRequest{" +
 			"password = '" + password + '\'' + 
-			",phoneNumber = '" + phoneNumber + '\'' + 
+			",phone = '" + phone + '\'' + 
 			",name = '" + name + '\'' + 
 			",email = '" + email + '\'' + 
 			"}";
