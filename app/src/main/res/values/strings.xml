@@ -3,6 +3,9 @@
 
 
     <string name="hello_world">Hello world!</string>
+    <string name="next">NEXT</string>
+    <string name="skip">SKIP</string>
+    <string name="start">GOT IT</string>
 
     <string name="email">Email Id</string>
     <string name="passowrd">Password</string>
@@ -58,4 +61,8 @@
     <string name="title_activity_login_page">LoginPage</string>
     <string name="check">Check</string>
     <string name="icon">icon</string>
+    <string name="product_name">Product Name:</string>
+    <string name="merchant">Merchant:</string>
+    <string name="price">Price:</string>
+    <string name="quantity">Quantity:</string>
 </resources>
