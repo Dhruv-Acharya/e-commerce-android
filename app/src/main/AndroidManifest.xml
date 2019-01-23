@@ -6,30 +6,27 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
-        android:allowBackup="true"
-        android:label="LELO.COM"
         android:name=".Login.AppController"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
+        android:label="LELO.COM"
+        android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:label,android:icon">
-
+        <activity android:name=".OrderActivity"
+            android:parentActivityName=".Main.MainActivity"></activity>
         <activity
             android:name=".Login.LoginPage"
             android:label="@string/title_activity_login_page"
             android:parentActivityName=".Main.MainActivity"
-            android:theme="@style/AppTheme.ActionBar"
-             />
+            android:theme="@style/AppTheme.ActionBar" />
         <activity
             android:name=".Main.CartListActivity"
-            android:parentActivityName=".Main.MainActivity"/>
+            android:parentActivityName=".Main.MainActivity" />
         <activity
             android:name=".Main.WelcomeActivity"
-
-            android:theme="@style/AppTheme.ActionBar">
-        </activity>
-
+            android:theme="@style/AppTheme.ActionBar"></activity>
         <activity
             android:name=".Main.MainActivity"
             android:label="@string/title_activity_main"
@@ -37,29 +34,29 @@
         <activity
             android:name=".Main.SplashScreenActivity"
             android:theme="@style/AppTheme.ActionBar">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ProductDetails.ProductPage"
+        <activity
+            android:name=".ProductDetails.ProductPage"
             android:parentActivityName=".Main.MainActivity"
-            android:theme="@style/AppTheme.ActionBar"/>
+            android:theme="@style/AppTheme.ActionBar" />
         <activity
             android:name=".Search.SearchResultActivity"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:parentActivityName=".Main.MainActivity">
+            android:parentActivityName=".Main.MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
-                <action android:name="android.intent.action.SEARCH"/>
+                <action android:name="android.intent.action.SEARCH" />
 
-                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
 
             <meta-data
                 android:name="android.app.searchable"
-                android:resource="@xml/searchable"/>
+                android:resource="@xml/searchable" />
         </activity>
     </application>
 
