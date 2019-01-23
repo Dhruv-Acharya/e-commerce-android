@@ -13,8 +13,5 @@
           app:showAsAction="always"
           android:icon="@drawable/ic_menu_notifications"/>
 
-    <item android:id="@+id/web_site"
-        android:title="@string/web_site"
-        app:showAsAction="always"
-        android:icon="@drawable/ic_web_black_24dp"/>
+
 </menu>

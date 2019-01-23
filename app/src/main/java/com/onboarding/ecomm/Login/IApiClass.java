@@ -8,6 +8,7 @@ import com.onboarding.ecomm.Model.Response.LoginResponse;
 import com.onboarding.ecomm.Model.Response.MerchantResponse;
 import com.onboarding.ecomm.Model.Response.OrderItemResponse;
 import com.onboarding.ecomm.Model.Response.ProductResponse;
+import com.onboarding.ecomm.Model.Response.RequestForAddToCart;
 import com.onboarding.ecomm.Model.Response.SearchResponse;
 import com.onboarding.ecomm.Model.Response.Category;
 import com.onboarding.ecomm.Model.Response.ProductByCategoryResponce;
@@ -31,10 +32,10 @@ public interface IApiClass {
     public Call<Void> signUp(@Body SignUpRequest signUpRequest);
 
     @POST("cart/{customerId}/{productId}/{merchantId}")
-    public Call<Void> addToCart(@Path("customerId")String customerId,@Path("productId")String productId, @Path("merchantId")String merchantId);
+    public Call<Void> addToCart(@Path("customerId")String customerId,@Path("productId")String productId, @Path("merchantId")String merchantId, @Body RequestForAddToCart quantity);
 
     @PUT("/cart/update/{customerId}/{productId}/{merchantId}")
-    public Call<Void> updateToCart(@Path("customerId")String customerId,@Path("productId")String productId, @Path("merchantId")String merchantId);
+    public Call<Void> updateToCart(@Path("customerId")String customerId,@Path("productId")String productId, @Path("merchantId")String merchantId, @Body RequestForAddToCart quantity);
 
     @GET("/product/get/{product_id}")
     public Call<ProductResponse> getProductReponse(@Path("product_id")String product_id);

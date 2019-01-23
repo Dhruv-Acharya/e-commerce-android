@@ -28,7 +28,7 @@ public class ProductResponse{
 	private String name;
 
 	@SerializedName("rating")
-	private int rating;
+	private float rating;
 
 	@SerializedName("description")
 	private String description;
@@ -92,11 +92,11 @@ public class ProductResponse{
 		return name;
 	}
 
-	public void setRating(int rating){
+	public void setRating(float rating){
 		this.rating = rating;
 	}
 
-	public int getRating(){
+	public float getRating(){
 		return rating;
 	}
 

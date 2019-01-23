@@ -44,6 +44,12 @@ public class OrderActivity extends AppCompatActivity {
             public void onResponse(Call<List<OrderItemResponse>> call, Response<List<OrderItemResponse>> response) {
                 orderItemResponses = response.body();
 
+                recyclerView = findViewById(R.id.recyclerView);
+                LinearLayoutManager linearLayoutManager = new LinearLayoutManager(recyclerView.getContext());
+                recyclerView.setLayoutManager(linearLayoutManager);
+                OrderAdapter orderAdapter = new OrderAdapter(orderItemResponses);
+                recyclerView.setAdapter(orderAdapter);
+
             }
 
             @Override
@@ -51,11 +57,7 @@ public class OrderActivity extends AppCompatActivity {
 
             }
         });
-        recyclerView = findViewById(R.id.recyclerView);
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(recyclerView.getContext());
-        recyclerView.setLayoutManager(linearLayoutManager);
-        OrderAdapter orderAdapter = new OrderAdapter(orderItemResponses);
-        recyclerView.setAdapter(orderAdapter);
+
     }
 
 

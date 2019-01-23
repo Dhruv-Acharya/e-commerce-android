@@ -3,14 +3,20 @@ package com.onboarding.ecomm.Search;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.widget.EditText;
 
+import com.onboarding.ecomm.Adapters.OrderAdapter;
+import com.onboarding.ecomm.Adapters.SearchAdapter;
 import com.onboarding.ecomm.Login.AppController;
 import com.onboarding.ecomm.Login.IApiClass;
 import com.onboarding.ecomm.Model.Response.SearchResponse;
 import com.onboarding.ecomm.R;
+
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -26,6 +32,9 @@ public class SearchResultActivity extends AppCompatActivity {
     private String imageUrl=null;
     private double rating=0;
     private String priceRange=null;
+    RecyclerView recyclerView;
+    List<SearchResponse> searchResponse;
+
 
 
 
@@ -54,9 +63,15 @@ public class SearchResultActivity extends AppCompatActivity {
                     imageUrl=response.body().getImageUrl();
                     rating=response.body().getRating();
                     priceRange=response.body().getPriceRange();
+                        recyclerView = findViewById(R.id.recyclerViewSearch);
+                        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(recyclerView.getContext());
+                        recyclerView.setLayoutManager(linearLayoutManager);
+                        SearchAdapter searchAdapter = new SearchAdapter(searchResponse);
+                        recyclerView.setAdapter(searchAdapter);
 
 
-            }
+
+                    }
 
                     @Override
                     public void onFailure(Call<SearchResponse> call, Throwable t) {

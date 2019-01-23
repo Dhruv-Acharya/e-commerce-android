@@ -19,7 +19,7 @@ public class MerchantResponse{
 	private String name;
 
 	@SerializedName("rating")
-	private int rating;
+	private double rating;
 
 	@SerializedName("discount")
 	private int discount;
@@ -59,11 +59,11 @@ public class MerchantResponse{
 		return name;
 	}
 
-	public void setRating(int rating){
+	public void setRating(double rating){
 		this.rating = rating;
 	}
 
-	public int getRating(){
+	public double getRating(){
 		return rating;
 	}
 

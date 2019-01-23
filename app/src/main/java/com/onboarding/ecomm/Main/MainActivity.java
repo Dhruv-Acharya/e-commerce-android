@@ -24,6 +24,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.onboarding.ecomm.CartActivity;
 import com.onboarding.ecomm.Fragment.ElectronicsFragment;
 import com.onboarding.ecomm.Login.AppController;
 import com.onboarding.ecomm.Login.IApiClass;
@@ -128,15 +129,14 @@ public class MainActivity extends AppCompatActivity
             startActivity(new Intent(MainActivity.this, SearchResultActivity.class));
             return true;
         } else if (id == R.id.action_cart) {
-            startActivity(new Intent(MainActivity.this, CartListActivity.class));
-            return true;
-        } else if (id == R.id.web_site) {
-            Uri uri = Uri.parse("http://www.google.com");
-            Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+            Intent intent=new Intent(MainActivity.this, CartActivity.class);
+            intent.putExtra("CustomerId",tokenId);
             startActivity(intent);
+            return true;
         }
+
         else if(id==R.id.my_orders){
-            startActivity(new Intent(MainActivity.this, OrderActivity.class));
+            //startActivity(new Intent(MainActivity.this, OrderPageActivity.class));
             return true;
 
         }
