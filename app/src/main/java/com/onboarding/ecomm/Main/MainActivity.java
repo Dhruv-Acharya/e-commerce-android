@@ -26,6 +26,7 @@ import com.onboarding.ecomm.Login.AppController;
 import com.onboarding.ecomm.Login.IApiClass;
 import com.onboarding.ecomm.Login.LoginPage;
 import com.onboarding.ecomm.Model.Response.Category;
+import com.onboarding.ecomm.OrderActivity;
 import com.onboarding.ecomm.R;
 import com.onboarding.ecomm.Search.SearchResultActivity;
 
@@ -126,30 +127,17 @@ public class MainActivity extends AppCompatActivity
             Uri uri = Uri.parse("http://www.google.com");
             Intent intent = new Intent(Intent.ACTION_VIEW, uri);
             startActivity(intent);
-        } else {
-            startActivity(new Intent(MainActivity.this, EmptyActivity.class));
+        }
+        else if(id==R.id.my_orders){
+            startActivity(new Intent(MainActivity.this, OrderActivity.class));
+            return true;
+
         }
         return super.onOptionsItemSelected(item);
     }
 
-    @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
-        int itemId = item.getItemId();
-//        if (itemId == R.id.nav_item1) {
-//            viewPager.setCurrentItem(0);
-//        } else if (itemId == R.id.nav_item2) {
-//            viewPager.setCurrentItem(1);
-//        } else if (itemId == R.id.nav_item3) {
-//            viewPager.setCurrentItem(2);
-//        } else if (itemId == R.id.nav_item4) {
-//            viewPager.setCurrentItem(3);
-//        } else if (itemId == R.id.nav_item5) {
-//            viewPager.setCurrentItem(4);
-//        }else if (itemId == R.id.my_cart) {
-//            startActivity(new Intent(MainActivity.this, CartListActivity.class));
-//        }
-
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
