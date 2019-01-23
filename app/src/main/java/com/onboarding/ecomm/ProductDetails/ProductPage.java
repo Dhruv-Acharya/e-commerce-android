@@ -1,8 +1,6 @@
 package com.onboarding.ecomm.ProductDetails;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -15,14 +13,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.cepheuen.elegantnumberbutton.view.ElegantNumberButton;
 import com.onboarding.ecomm.Login.AppController;
 import com.onboarding.ecomm.Login.IApiClass;
-import com.onboarding.ecomm.Main.CartListActivity;
 import com.onboarding.ecomm.Main.MainActivity;
+import com.onboarding.ecomm.Model.Request.AddToCartRequest;
 import com.onboarding.ecomm.Model.Response.MerchantResponse;
 import com.onboarding.ecomm.Model.Response.ProductResponse;
 import com.onboarding.ecomm.R;
-import com.onboarding.ecomm.notification.NotificationCountSetClass;
 
 import java.util.HashMap;
 import java.util.List;
@@ -42,6 +40,8 @@ public class ProductPage extends AppCompatActivity implements AdapterView.OnItem
     private String imageUrl = null;
     private Spinner merchant = null;
     private HashMap<String, Integer> merchantMap = new HashMap<>();
+    private HashMap<String,String> merchantIdMap = new HashMap<>();
+    private ElegantNumberButton quantity=null;
 
 
     @Override
@@ -56,6 +56,9 @@ public class ProductPage extends AppCompatActivity implements AdapterView.OnItem
         buy_now = findViewById(R.id.buy_now_button);
         imageView = findViewById(R.id.product_image);
         merchant = findViewById(R.id.merchant_spinner);
+        quantity=findViewById(R.id.quantity);
+        quantity.setNumber(String.valueOf(0));
+
 
 
         merchant.setOnItemSelectedListener(this);
@@ -68,26 +71,27 @@ public class ProductPage extends AppCompatActivity implements AdapterView.OnItem
 
         imageView = findViewById(R.id.product_image);
 
-        textViewAddToCart.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Item added to cart", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-                MainActivity.notificationCountCart++;
-                NotificationCountSetClass.setNotifyCount(MainActivity.notificationCountCart);
-            }
-        });
 
-        textViewBuyNow.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                MainActivity.notificationCountCart++;
-                NotificationCountSetClass.setNotifyCount(MainActivity.notificationCountCart);
-                startActivity(new Intent(ProductPage.this, CartListActivity.class));
-
-            }
-        });
+//        textViewAddToCart.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Snackbar.make(view, "Item added to cart", Snackbar.LENGTH_LONG)
+//                        .setAction("Action", null).show();
+//                MainActivity.notificationCountCart++;
+//                NotificationCountSetClass.setNotifyCount(MainActivity.notificationCountCart);
+//            }
+//        });
+//
+//        textViewBuyNow.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//
+//                MainActivity.notificationCountCart++;
+//                NotificationCountSetClass.setNotifyCount(MainActivity.notificationCountCart);
+//                startActivity(new Intent(ProductPage.this, CartListActivity.class));
+//
+//            }
+//        });
 
 
         System.out.println(productId+"ProductID");
@@ -116,6 +120,7 @@ public class ProductPage extends AppCompatActivity implements AdapterView.OnItem
                         for (MerchantResponse merchantResponse : merchantResponses) {
                             merchantNames.add(merchantResponse.getName());
                             merchantMap.put(merchantResponse.getName(), merchantResponse.getPrice());
+                            merchantIdMap.put(merchantResponse.getName(), merchantResponse.getMerchantId());
                         }
                         product_price.setText(merchantMap.get(merchantNames.get(0)));
 
@@ -138,11 +143,49 @@ public class ProductPage extends AppCompatActivity implements AdapterView.OnItem
             }
         });
 
+
+        add_to_cart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(MainActivity.tokenId!=null){
+                    if(quantity.getNumber()==String.valueOf(0)){
+                        iApiClass=AppController.retrofitOrderItem.create(IApiClass.class);
+                        AddToCartRequest addToCartRequest =new AddToCartRequest();
+                        addToCartRequest.setCustomerId(MainActivity.tokenId);
+                        addToCartRequest.setMerchantId(merchantId);
+                        iApiClass.addToCart(MainActivity.tokenId,productId,merchantId).enqueue(new Callback<Void>() {
+                            @Override
+                            public void onResponse(Call<Void> call, Response<Void> response) {
+                                if(response.code()==201){
+                                    Toast.makeText(ProductPage.this,"Product added",Toast.LENGTH_LONG).show();
+                                }else{
+                                    Toast.makeText(ProductPage.this,"Product not added",Toast.LENGTH_LONG).show();
+                                }
+                            }
+
+                            @Override
+                            public void onFailure(Call<Void> call, Throwable t) {
+
+                            }
+                        });
+
+
+
+
+
+                    }
+
+                }
+            }
+        });
+
+
     }
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         product_price.setText(merchantMap.get(merchantNames.get(position)));
+        merchantId = merchantIdMap.get(merchantNames.get(position));
 
         Toast.makeText(getApplicationContext(), merchantNames.get(position), Toast.LENGTH_LONG).show();
     }
@@ -151,6 +194,8 @@ public class ProductPage extends AppCompatActivity implements AdapterView.OnItem
     public void onNothingSelected(AdapterView<?> parent) {
 
     }
+
+
 }
 
 

@@ -167,7 +167,6 @@ public class SignUp_Fragment extends Fragment implements OnClickListener {
                 public void onResponse(Call<Void> call, Response<Void> response) {
 
                     if (response.code() == 201) {
-                        tokenId = email.getText().toString();
                         communicator.navigateToMain();
 
                         Toast.makeText(
@@ -176,7 +175,6 @@ public class SignUp_Fragment extends Fragment implements OnClickListener {
                                 .
 
                                         show();
-                        //TODO Redirect to home with login success
                     } else {
                         Toast.makeText(getContext(), "Signup Failure", Toast.LENGTH_LONG).show();
                     }
