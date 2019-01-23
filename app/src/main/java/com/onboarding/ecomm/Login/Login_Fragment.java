@@ -1,5 +1,7 @@
 package com.onboarding.ecomm.Login;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
 import android.content.res.XmlResourceParser;
 import android.os.Bundle;
@@ -48,6 +50,7 @@ public class Login_Fragment extends Fragment implements OnClickListener {
     private static Animation shakeAnimation;
     private static FragmentManager fragmentManager;
     private IApiClass iApiClass;
+
 
     public Login_Fragment() {
 
@@ -210,7 +213,8 @@ public class Login_Fragment extends Fragment implements OnClickListener {
                 @Override
                 public void onResponse(Call<Void> call, Response<Void> response) {
                     if (response.code() == 200) {
-                        tokenId=emailid.getText().toString();
+                        tokenId=emailid.toString();
+
                         communicator.navigateToMain();
 
 
