@@ -9,8 +9,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.onboarding.ecomm.Model.Response.OrderItemResponse;
 import com.onboarding.ecomm.Model.Response.ProductByCategoryResponce;
 import com.onboarding.ecomm.R;
+import com.onboarding.ecomm.viewholder.MyOrderViewHolder;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,9 +20,9 @@ import java.util.List;
 public class OrderAdapter extends RecyclerView.Adapter {
 
 
-    List<ProductByCategoryResponce> productList;
-    public OrderAdapter(List<ProductByCategoryResponce> productList) {
-        this.productList = productList;
+    List<OrderItemResponse> orderItemResponses;
+    public OrderAdapter(List<OrderItemResponse> orderItemResponses) {
+        this.orderItemResponses = orderItemResponses;
     }
 
     @NonNull
@@ -32,44 +34,18 @@ public class OrderAdapter extends RecyclerView.Adapter {
 
     @Override
     public void onBindViewHolder(@NonNull  RecyclerView.ViewHolder viewHolder, int i) {
-       // ((MyViewHolder) viewHolder).bind();
+        ((MyOrderViewHolder)viewHolder).bind(orderItemResponses.get(i));
     }
 
     @Override
     public int getItemCount() {
-        return productList.size();
+        return orderItemResponses.size();
     }
 
 
 
 }
 
-class MyOrderViewHolder extends RecyclerView.ViewHolder {
-    TextView pname;
-    TextView pprice;
-    ImageView pimage;
-    TextView pmerchant;
-    TextView pQuantity;
 
-
-    public MyOrderViewHolder(@NonNull View itemView) {
-        super(itemView);
-        pname = itemView.findViewById(R.id.pname);
-        pimage = itemView.findViewById(R.id.pimage);
-        pprice=itemView.findViewById(R.id.pprice);
-        pmerchant=itemView.findViewById(R.id.pmerchant);
-        pQuantity=itemView.findViewById(R.id.pquantity);
-    }
-
-    void bind(String productName, String imageUrl,String productPrice,String productMerchant,String productQuantity){
-        pname.setText(productName);
-        pprice.setText(productPrice);
-        pmerchant.setText(productMerchant);
-        pQuantity.setText(productQuantity);
-        Glide.with(pimage.getContext()).load(imageUrl).into(pimage);
-
-    }
-
-}
 
 

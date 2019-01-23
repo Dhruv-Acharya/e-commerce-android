@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,6 +29,9 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class ElectronicsFragment extends Fragment implements Icommunicator {
+    private List<String> productId = new ArrayList<>();
+
+    List<ProductByCategoryResponce> productByCategoryResponces;
     ArrayList logos = new ArrayList<>(Arrays.asList(R.drawable.splash_icon, R.drawable.splash_icon, R.drawable.splash_icon, R.drawable.splash_icon,
             R.drawable.splash_icon, R.drawable.splash_icon, R.drawable.splash_icon, R.drawable.splash_icon, R.drawable.splash_icon,
             R.drawable.splash_icon));
@@ -64,6 +68,12 @@ public class ElectronicsFragment extends Fragment implements Icommunicator {
             @Override
             public void onResponse(Call<List<ProductByCategoryResponce>> call, Response<List<ProductByCategoryResponce>> response) {
                 if(response.isSuccessful()){
+                    Log.e("Response",response.body().toString());
+                    productByCategoryResponces = response.body();
+                    for(ProductByCategoryResponce productByCategoryResponce: productByCategoryResponces)
+                    {
+                        productId.add(productByCategoryResponce.getProductId());
+                    }
                     itemList.clear();
                     itemList.addAll(response.body());
                     cardViewAdapter.notifyDataSetChanged();
@@ -81,7 +91,10 @@ public class ElectronicsFragment extends Fragment implements Icommunicator {
 
     @Override
     public void navigate(int position) {
+        Log.e("ProductId",productId.get(position));
         Intent intent=new Intent(getContext(), ProductPage.class);
+        Log.e("Position" , String.valueOf(position));
+        intent.putExtra("ProductID",productId.get(position));
         startActivity(intent);
     }
 }

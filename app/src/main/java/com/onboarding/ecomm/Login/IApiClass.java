@@ -1,8 +1,10 @@
 package com.onboarding.ecomm.Login;
 
 import com.onboarding.ecomm.Model.Request.LoginRequest;
-import com.onboarding.ecomm.Model.Request.ProductResponse;
 import com.onboarding.ecomm.Model.Request.SignUpRequest;
+import com.onboarding.ecomm.Model.Response.MerchantResponse;
+import com.onboarding.ecomm.Model.Response.OrderItemResponse;
+import com.onboarding.ecomm.Model.Response.ProductResponse;
 import com.onboarding.ecomm.Model.Response.SearchResponse;
 import com.onboarding.ecomm.Model.Response.Category;
 import com.onboarding.ecomm.Model.Response.ProductByCategoryResponce;
@@ -24,15 +26,21 @@ public interface IApiClass {
     @POST("customer/add")
     public Call<Void> signUp(@Body SignUpRequest signUpRequest);
 
-    @GET("/product/get/{product_id}/{merchant_id}")
-    public Call<ProductResponse> getProductReponse(@Path("product_id")String product_id, @Path("merchant_id")String merchant_id );
+    @GET("/product/get/{product_id}")
+    public Call<ProductResponse> getProductReponse(@Path("product_id")String product_id);
 
     @GET("product/{name}")
     public  Call<SearchResponse> getSearchResponse(@Path("name")String name);
 
     @GET("/category/getAll")
-    public Call<List<Category>> getAllCategory();
+    public Call<List<Category> >getAllCategory();
 
     @GET("/product/getByCategory/{categoryId}")
     public Call<List<ProductByCategoryResponce>> getByCategory(@Path("categoryId") String categoryId);
+
+    @GET("/product/getMerchants/{productId}")
+    public Call<List<MerchantResponse>> getMerchants(@Path("productId")String productId);
+
+    @GET("/order/get/{order_id}")
+    public Call<List<OrderItemResponse>>getOrderItems(@Path("order_id")String order_id);
 }

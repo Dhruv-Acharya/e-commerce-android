@@ -2,6 +2,8 @@ package com.onboarding.ecomm.Login;
 
 import android.app.Application;
 
+import java.sql.Ref;
+
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -9,6 +11,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class AppController extends Application {
     public static Retrofit retrofit = null;
     public static Retrofit retrofitProduct = null;
+    public static Retrofit retrofitOrderItem=null;
 
     @Override
     public void onCreate() {
@@ -37,6 +40,22 @@ public class AppController extends Application {
                     .build();
 
         }
+
+
+        if (null == retrofitOrderItem) {
+
+            OkHttpClient client = new OkHttpClient.Builder().build();
+
+            retrofitOrderItem = new Retrofit.Builder()
+                    .baseUrl("https://order-lelo.herokuapp.com/")
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .client(client)
+                    .build();
+
+        }
+
+
+
     }
 
 

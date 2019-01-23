@@ -3,6 +3,7 @@ package com.onboarding.ecomm.Model.Response;
 
 import com.google.gson.annotations.SerializedName;
 
+
 public class Category{
 
 	@SerializedName("name")

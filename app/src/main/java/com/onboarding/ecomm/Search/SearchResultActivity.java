@@ -1,22 +1,14 @@
 
 package com.onboarding.ecomm.Search;
 
-import android.app.SearchManager;
-import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.SearchView;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.widget.EditText;
 
 import com.onboarding.ecomm.Login.AppController;
 import com.onboarding.ecomm.Login.IApiClass;
-import com.onboarding.ecomm.Model.Request.ProductResponse;
 import com.onboarding.ecomm.Model.Response.SearchResponse;
 import com.onboarding.ecomm.R;
 

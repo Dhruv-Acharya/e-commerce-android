@@ -17,6 +17,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -80,6 +81,8 @@ public class MainActivity extends AppCompatActivity
         tabLayout = findViewById(R.id.tabs);
 
         iApiClass = AppController.retrofitProduct.create(IApiClass.class);
+
+
         iApiClass.getAllCategory().enqueue(new Callback<List<Category>>() {
             @Override
             public void onResponse(Call<List<Category>> call, Response<List<Category>> response) {
@@ -92,7 +95,8 @@ public class MainActivity extends AppCompatActivity
             public void onFailure(Call<List<Category>> call, Throwable t) {
 
             }
-        });
+
+    });
         if (viewPager != null) {
             tabLayout.setupWithViewPager(viewPager);
         }
