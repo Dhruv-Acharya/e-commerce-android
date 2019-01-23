@@ -5,9 +5,13 @@ import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.onboarding.ecomm.Login.AppController;
@@ -21,7 +25,7 @@ import com.onboarding.ecomm.notification.NotificationCountSetClass;
 import retrofit2.Call;
 import retrofit2.Callback;
 
-public class ProductPage extends AppCompatActivity {
+public class ProductPage extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     private static TextView product_price, product_name, usp, description;
     private static Button add_to_cart, buy_now;
     private ImageView imageView;
@@ -29,6 +33,8 @@ public class ProductPage extends AppCompatActivity {
     private String productId = null;
     private String merchantId = null;
     private String imageUrl = null;
+    private Spinner merchant = null;
+    String[] bankNames = {"BOI", "SBI", "HDFC", "PNB", "OBC"};
 
 
     @Override
@@ -42,9 +48,16 @@ public class ProductPage extends AppCompatActivity {
         add_to_cart = findViewById(R.id.add_to_cart);
         buy_now = findViewById(R.id.buy_now_button);
         imageView = findViewById(R.id.product_image);
-        //merchant=findViewById();
+        merchant = findViewById(R.id.merchant_spinner);
 
 
+        merchant.setOnItemSelectedListener(this);
+
+
+        ArrayAdapter aa = new ArrayAdapter(this, android.R.layout.simple_spinner_item, bankNames);
+        aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//Setting the ArrayAdapter data on the Spinner
+        merchant.setAdapter(aa);
         setContentView(R.layout.product_page);
         TextView textViewAddToCart = findViewById(R.id.add_to_cart);
         TextView textViewBuyNow = (TextView) findViewById(R.id.buy_now_button);
@@ -74,7 +87,7 @@ public class ProductPage extends AppCompatActivity {
         });
 
 
-        iApiClass = AppController.retrofit.create(IApiClass.class);
+        iApiClass = AppController.retrofitProduct.create(IApiClass.class);
         iApiClass.getProductReponse(productId, merchantId).enqueue(new Callback<ProductResponse>() {
             @Override
             public void onResponse(Call<ProductResponse> call, retrofit2.Response<ProductResponse> response) {
@@ -93,6 +106,17 @@ public class ProductPage extends AppCompatActivity {
 
             }
         });
+
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+        Toast.makeText(getApplicationContext(), bankNames[position], Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
 
     }
 }

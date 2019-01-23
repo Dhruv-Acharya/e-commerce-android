@@ -52,8 +52,7 @@ public class SearchResultActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-//// TODO: 22/01/19
-                iApiClass = AppController.retrofit.create(IApiClass.class);
+                iApiClass = AppController.retrofitProduct.create(IApiClass.class);
                 iApiClass.getSearchResponse(name).enqueue(new Callback<SearchResponse>() {
                     @Override
                     public void onResponse(Call<SearchResponse> call, retrofit2.Response<SearchResponse> response) {
