@@ -5,16 +5,9 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
-
-import com.bumptech.glide.Glide;
 import com.onboarding.ecomm.Model.Response.OrderItemResponse;
-import com.onboarding.ecomm.Model.Response.ProductByCategoryResponce;
 import com.onboarding.ecomm.R;
 import com.onboarding.ecomm.viewholder.MyOrderViewHolder;
-
-import java.util.ArrayList;
 import java.util.List;
 
 public class OrderAdapter extends RecyclerView.Adapter {

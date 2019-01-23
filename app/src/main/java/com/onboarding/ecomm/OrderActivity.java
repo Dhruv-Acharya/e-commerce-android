@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Layout;
+import android.util.Log;
 
 import com.onboarding.ecomm.Adapters.CardViewAdapter;
 import com.onboarding.ecomm.Adapters.OrderAdapter;
@@ -26,36 +28,44 @@ public class OrderActivity extends AppCompatActivity {
     private String orderId="";
 
 
+    private OrderAdapter orderAdapter;
     private IApiClass iApiClass;
-    RecyclerView recyclerView;
+    private RecyclerView recyclerView;
+    private RecyclerView.LayoutManager layoutManager;
     private List<OrderItemResponse> orderItemResponses = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order);
 
-        Intent intent = new Intent();
-
-        orderId=intent.getStringExtra("");
+        Intent intent = getIntent();
+        orderId=intent.getStringExtra("OrderId");
+        Log.d("OrderId",orderId);
+        recyclerView = findViewById(R.id.recyclerView);
 
         iApiClass = AppController.retrofitOrderItem.create(IApiClass.class);
         iApiClass.getOrderItems(orderId).enqueue(new Callback<List<OrderItemResponse>>() {
             @Override
             public void onResponse(Call<List<OrderItemResponse>> call, Response<List<OrderItemResponse>> response) {
+                Log.d("Click","Done");
                 orderItemResponses = response.body();
+                Log.d("Click",orderItemResponses.toString());
+
+                orderAdapter = new OrderAdapter(orderItemResponses);
+                recyclerView.setLayoutManager(new LinearLayoutManager(OrderActivity.this, LinearLayoutManager.VERTICAL,false));
+                recyclerView.setLayoutManager(layoutManager);
+
+                recyclerView.setAdapter(orderAdapter);
 
             }
 
             @Override
             public void onFailure(Call<List<OrderItemResponse>> call, Throwable t) {
+                Log.d("Failure1","Failure");
 
             }
         });
-        recyclerView = findViewById(R.id.recyclerView);
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(recyclerView.getContext());
-        recyclerView.setLayoutManager(linearLayoutManager);
-        OrderAdapter orderAdapter = new OrderAdapter(orderItemResponses);
-        recyclerView.setAdapter(orderAdapter);
+
     }
 
 
