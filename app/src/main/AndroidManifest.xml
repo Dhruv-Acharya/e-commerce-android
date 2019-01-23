@@ -60,6 +60,10 @@
                 android:name="android.app.searchable"
                 android:resource="@xml/searchable" />
         </activity>
+        <activity
+            android:name=".Main.OrderPageActivity"
+            android:parentActivityName=".Main.MainActivity"
+            tools:ignore="DuplicateActivity" />
     </application>
 
 </manifest>

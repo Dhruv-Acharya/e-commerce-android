@@ -7,6 +7,7 @@ import com.onboarding.ecomm.Model.Response.CartResponse;
 import com.onboarding.ecomm.Model.Response.LoginResponse;
 import com.onboarding.ecomm.Model.Response.MerchantResponse;
 import com.onboarding.ecomm.Model.Response.OrderItemResponse;
+import com.onboarding.ecomm.Model.Response.OrderPageResponse;
 import com.onboarding.ecomm.Model.Response.ProductResponse;
 import com.onboarding.ecomm.Model.Response.RequestForAddToCart;
 import com.onboarding.ecomm.Model.Response.SearchResponse;
@@ -57,4 +58,8 @@ public interface IApiClass {
 
     @GET("/cart/{customerId}")
     public Call<List<CartResponse>>getCartItems(@Path("customerId")String customerId);
+
+    @GET("/order/getAll/{customerId}")
+    public Call<List<OrderPageResponse>>getOrderResponse(@Path("customerId")String customerId);
+
 }
