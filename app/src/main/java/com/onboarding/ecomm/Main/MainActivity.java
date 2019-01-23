@@ -23,12 +23,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-import com.onboarding.ecomm.Fragment.BBPFragment;
 import com.onboarding.ecomm.Fragment.ElectronicsFragment;
 import com.onboarding.ecomm.Login.AppController;
 import com.onboarding.ecomm.Login.IApiClass;
 import com.onboarding.ecomm.Login.LoginPage;
 import com.onboarding.ecomm.Model.Response.Category;
+import com.onboarding.ecomm.OrderActivity;
 import com.onboarding.ecomm.R;
 import com.onboarding.ecomm.Search.SearchResultActivity;
 
@@ -97,7 +97,6 @@ public class MainActivity extends AppCompatActivity
             }
         });
         if (viewPager != null) {
-            setupViewPager(viewPager);
             tabLayout.setupWithViewPager(viewPager);
         }
     }
@@ -114,18 +113,13 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
         if (id == R.id.action_search) {
             startActivity(new Intent(MainActivity.this, SearchResultActivity.class));
             return true;
@@ -137,7 +131,11 @@ public class MainActivity extends AppCompatActivity
             Intent intent = new Intent(Intent.ACTION_VIEW, uri);
             startActivity(intent);
         }
+        else if(id==R.id.my_orders){
+            startActivity(new Intent(MainActivity.this, OrderActivity.class));
+            return true;
 
+        }
         return super.onOptionsItemSelected(item);
     }
 
