@@ -2,6 +2,7 @@ package com.onboarding.ecomm.Login;
 
 import com.onboarding.ecomm.Model.Request.LoginRequest;
 import com.onboarding.ecomm.Model.Request.SignUpRequest;
+import com.onboarding.ecomm.Model.Response.LoginResponse;
 import com.onboarding.ecomm.Model.Response.MerchantResponse;
 import com.onboarding.ecomm.Model.Response.OrderItemResponse;
 import com.onboarding.ecomm.Model.Response.ProductResponse;
@@ -21,7 +22,7 @@ public interface IApiClass {
 
 
     @POST("/customer/login")
-    public Call<Void> logIn(@Body LoginRequest loginRequest);
+    public Call<LoginResponse> logIn(@Body LoginRequest loginRequest);
 
     @POST("customer/add")
     public Call<Void> signUp(@Body SignUpRequest signUpRequest);

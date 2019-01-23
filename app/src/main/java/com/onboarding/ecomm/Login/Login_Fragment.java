@@ -28,6 +28,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.onboarding.ecomm.Model.Request.LoginRequest;
+import com.onboarding.ecomm.Model.Response.LoginResponse;
 import com.onboarding.ecomm.R;
 
 import java.util.regex.Matcher;
@@ -207,14 +208,13 @@ public class Login_Fragment extends Fragment implements OnClickListener {
             LoginRequest loginRequest = new LoginRequest();
             loginRequest.setEmail(emailid.getText().toString());
             loginRequest.setPassword(password.getText().toString());
-            iApiClass.logIn(loginRequest).enqueue(new Callback<Void>() {
+            iApiClass.logIn(loginRequest).enqueue(new Callback<LoginResponse>() {
 
 
                 @Override
-                public void onResponse(Call<Void> call, Response<Void> response) {
+                public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
                     if (response.code() == 200) {
-                        tokenId=emailid.toString();
-
+                        tokenId=response.body().getCustomerId().toString();
                         communicator.navigateToMain();
 
 
@@ -227,9 +227,10 @@ public class Login_Fragment extends Fragment implements OnClickListener {
                 }
 
                 @Override
-                public void onFailure(Call<Void> call, Throwable t) {
+                public void onFailure(Call<LoginResponse> call, Throwable t) {
                     Toast.makeText(getContext(), "Incorrect details", Toast.LENGTH_LONG).show();
                 }
+
             });
         }
 
