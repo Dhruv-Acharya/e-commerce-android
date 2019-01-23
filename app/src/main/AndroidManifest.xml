@@ -14,8 +14,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:label,android:icon">
-        <activity android:name=".Main.OrderPageActivity"></activity>
-        <activity android:name=".CartActivity" />
+        <activity android:name=".CartActivity"></activity>
         <activity
             android:name=".OrderActivity"
             android:parentActivityName=".Main.MainActivity" />
