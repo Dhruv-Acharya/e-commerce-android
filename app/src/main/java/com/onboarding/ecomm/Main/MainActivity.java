@@ -147,19 +147,10 @@ public class MainActivity extends AppCompatActivity
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         int itemId = item.getItemId();
-//        if (itemId == R.id.nav_item1) {
-//            viewPager.setCurrentItem(0);
-//        } else if (itemId == R.id.nav_item2) {
-//            viewPager.setCurrentItem(1);
-//        } else if (itemId == R.id.nav_item3) {
-//            viewPager.setCurrentItem(2);
-//        } else if (itemId == R.id.nav_item4) {
-//            viewPager.setCurrentItem(3);
-//        } else if (itemId == R.id.nav_item5) {
-//            viewPager.setCurrentItem(4);
-//        }else if (itemId == R.id.my_cart) {
-//            startActivity(new Intent(MainActivity.this, CartListActivity.class));
-//        }
+
+         if (itemId == R.id.my_orders) {
+             startActivity(new Intent(MainActivity.this, OrderPageActivity.class));
+        }
 
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
