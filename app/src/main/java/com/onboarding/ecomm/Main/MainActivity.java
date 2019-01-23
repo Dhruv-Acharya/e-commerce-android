@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+
+import android.support.design.widget.TabLayout;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -32,6 +34,7 @@ import com.onboarding.ecomm.R;
 import com.onboarding.ecomm.Search.SearchResultActivity;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import retrofit2.Call;
@@ -140,8 +143,24 @@ public class MainActivity extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }
 
+    @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
+        int itemId = item.getItemId();
+//        if (itemId == R.id.nav_item1) {
+//            viewPager.setCurrentItem(0);
+//        } else if (itemId == R.id.nav_item2) {
+//            viewPager.setCurrentItem(1);
+//        } else if (itemId == R.id.nav_item3) {
+//            viewPager.setCurrentItem(2);
+//        } else if (itemId == R.id.nav_item4) {
+//            viewPager.setCurrentItem(3);
+//        } else if (itemId == R.id.nav_item5) {
+//            viewPager.setCurrentItem(4);
+//        }else if (itemId == R.id.my_cart) {
+//            startActivity(new Intent(MainActivity.this, CartListActivity.class));
+//        }
+
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
