@@ -2,6 +2,7 @@ package com.onboarding.ecomm.Login;
 
 import com.onboarding.ecomm.Model.Request.LoginRequest;
 import com.onboarding.ecomm.Model.Request.SignUpRequest;
+import com.onboarding.ecomm.Model.Response.CartResponse;
 import com.onboarding.ecomm.Model.Response.MerchantResponse;
 import com.onboarding.ecomm.Model.Response.OrderItemResponse;
 import com.onboarding.ecomm.Model.Response.ProductResponse;
@@ -43,4 +44,7 @@ public interface IApiClass {
 
     @GET("/order/get/{order_id}")
     public Call<List<OrderItemResponse>>getOrderItems(@Path("order_id")String order_id);
+
+    @GET("/cart/{customerId}")
+    public Call<List<CartResponse>>getCartItems(@Path("customerId")String customerId);
 }

@@ -14,8 +14,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:label,android:icon">
-        <activity android:name=".OrderActivity"
-            android:parentActivityName=".Main.MainActivity"></activity>
+        <activity android:name=".CartActivity"></activity>
+        <activity
+            android:name=".OrderActivity"
+            android:parentActivityName=".Main.MainActivity" />
         <activity
             android:name=".Login.LoginPage"
             android:label="@string/title_activity_login_page"
@@ -26,7 +28,7 @@
             android:parentActivityName=".Main.MainActivity" />
         <activity
             android:name=".Main.WelcomeActivity"
-            android:theme="@style/AppTheme.ActionBar"></activity>
+            android:theme="@style/AppTheme.ActionBar" />
         <activity
             android:name=".Main.MainActivity"
             android:label="@string/title_activity_main"

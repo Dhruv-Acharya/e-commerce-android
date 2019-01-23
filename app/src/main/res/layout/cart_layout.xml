@@ -2,7 +2,7 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/orders"
+    android:id="@+id/cart"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -20,11 +20,12 @@
         app:contentPadding="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        android:id="@+id/cardViewCart">
 
 
         <ImageView
-            android:id="@+id/pimage"
+            android:id="@+id/imageViewCart"
             android:layout_width="150dp"
             android:layout_height="100dp"
             android:src="@drawable/splash_icon"
@@ -36,7 +37,7 @@
             app:layout_constraintVertical_bias="0.03" />
 
         <TextView
-            android:id="@+id/pname"
+            android:id="@+id/productNameCart"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="160dp"
@@ -51,7 +52,7 @@
             app:layout_constraintVertical_bias="0.019" />
 
         <TextView
-            android:id="@+id/pmerchant"
+            android:id="@+id/merchantNameCart"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="160dp"
@@ -66,7 +67,7 @@
             app:layout_constraintVertical_bias="0.058" />
 
         <TextView
-            android:id="@+id/pprice"
+            android:id="@+id/productPriceCart"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="160dp"
@@ -82,7 +83,7 @@
             app:layout_constraintVertical_bias="0.084" />
 
         <TextView
-            android:id="@+id/pquantity"
+            android:id="@+id/quantityCart"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="160dp"
