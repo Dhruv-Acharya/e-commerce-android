@@ -29,7 +29,7 @@ public class SearchAdapter extends RecyclerView.Adapter {
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
-        ((MySearchViewHolder) viewHolder).bind(searchList.get(i).getName(),searchList.get(i).getImageUrl());
+        ((MySearchViewHolder) viewHolder).bind(searchList.get(i).getName(), searchList.get(i).getImageUrl());
     }
 
     @Override

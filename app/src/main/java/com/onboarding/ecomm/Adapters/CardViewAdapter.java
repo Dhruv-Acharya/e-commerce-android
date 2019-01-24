@@ -2,7 +2,6 @@ package com.onboarding.ecomm.Adapters;
 
 
 import android.support.annotation.NonNull;
-import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -37,7 +36,7 @@ public class CardViewAdapter extends RecyclerView.Adapter {
     }
 
     @Override
-    public void onBindViewHolder(@NonNull  RecyclerView.ViewHolder viewHolder, int i) {
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
         ((MyViewHolder) viewHolder).bind(productList.get(i).getProductName(), productList.get(i).getImageUrl(), icommunicator);
     }
 
@@ -62,7 +61,7 @@ class MyViewHolder extends RecyclerView.ViewHolder {
         super(itemView);
         name = itemView.findViewById(R.id.name);
         image = itemView.findViewById(R.id.cardimage);
-        price=itemView.findViewById(R.id.price);
+        price = itemView.findViewById(R.id.price);
     }
 
     void bind(String item, String imageUrl, final Icommunicator icommunicator) {

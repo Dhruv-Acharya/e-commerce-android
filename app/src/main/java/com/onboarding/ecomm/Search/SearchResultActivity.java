@@ -1,4 +1,3 @@
-
 package com.onboarding.ecomm.Search;
 
 import android.os.Bundle;
@@ -8,8 +7,10 @@ import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.TextView;
 
-import com.onboarding.ecomm.Adapters.OrderAdapter;
+import com.bumptech.glide.Glide;
 import com.onboarding.ecomm.Adapters.SearchAdapter;
 import com.onboarding.ecomm.Login.AppController;
 import com.onboarding.ecomm.Login.IApiClass;
@@ -24,18 +25,18 @@ import retrofit2.Callback;
 public class SearchResultActivity extends AppCompatActivity {
 
 
-    private IApiClass iApiClass;
-    private String productId=null;
-    private String name=null;
-    private String usp=null;
-    private String description=null;
-    private String imageUrl=null;
-    private double rating=0;
-    private String priceRange=null;
     RecyclerView recyclerView;
     List<SearchResponse> searchResponse;
-
-
+    private IApiClass iApiClass;
+    private String productId = null;
+    private String name = null;
+    private String usp = null;
+    private String description = null;
+    private String imageUrl = null;
+    private double rating = 0;
+    private String priceRange = null;
+    private TextView searchProductName;
+    private ImageView searchResultImage;
 
 
     @Override
@@ -43,9 +44,11 @@ public class SearchResultActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_result);
         iApiClass = AppController.retrofit.create(IApiClass.class);
+        searchProductName = findViewById(R.id.searchProductName);
+        searchResultImage = findViewById(R.id.searchResultImage);
 
 
-        ((EditText)findViewById(R.id.et)).addTextChangedListener(new TextWatcher() {
+        ((EditText) findViewById(R.id.et)).addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
@@ -57,18 +60,22 @@ public class SearchResultActivity extends AppCompatActivity {
                 iApiClass.getSearchResponse(name).enqueue(new Callback<SearchResponse>() {
                     @Override
                     public void onResponse(Call<SearchResponse> call, retrofit2.Response<SearchResponse> response) {
-                    productId=response.body().getProductId();
-                    usp=response.body().getUsp();
-                    description=response.body().getDescription();
-                    imageUrl=response.body().getImageUrl();
-                    rating=response.body().getRating();
-                    priceRange=response.body().getPriceRange();
+                        productId = response.body().getProductId();
+                        usp = response.body().getUsp();
+                        description = response.body().getDescription();
+                        imageUrl = response.body().getImageUrl();
+                        rating = response.body().getRating();
+                        priceRange = response.body().getPriceRange();
+                        searchProductName.setText(response.body().getName());
+                        Glide.with(searchResultImage.getContext())
+                                .load(imageUrl)
+                                .into(searchResultImage);
+
                         recyclerView = findViewById(R.id.recyclerViewSearch);
                         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(recyclerView.getContext());
                         recyclerView.setLayoutManager(linearLayoutManager);
                         SearchAdapter searchAdapter = new SearchAdapter(searchResponse);
                         recyclerView.setAdapter(searchAdapter);
-
 
 
                     }
@@ -78,8 +85,8 @@ public class SearchResultActivity extends AppCompatActivity {
 
                     }
 
-        });
-    }
+                });
+            }
 
             @Override
             public void afterTextChanged(Editable s) {
@@ -87,10 +94,10 @@ public class SearchResultActivity extends AppCompatActivity {
             }
 
             //@Override
-    //public void onBackPressed() {
-    //    finish();
-   // }
-});
+            //public void onBackPressed() {
+            //    finish();
+            // }
+        });
 
     }
 }

@@ -43,7 +43,7 @@ public class ProductPage extends AppCompatActivity implements AdapterView.OnItem
     private HashMap<String, Integer> merchantMap = new HashMap<>();
     private HashMap<String, String> merchantIdMap = new HashMap<>();
     private ElegantNumberButton quantity = null;
-    private int quantityInCart;
+    private static int quantityInCart=0;
 
 
     @Override
@@ -66,8 +66,8 @@ public class ProductPage extends AppCompatActivity implements AdapterView.OnItem
         productId = getIntent().getStringExtra("ProductID");
         Log.e("ProductId", productId);
 
-        TextView textViewAddToCart = findViewById(R.id.add_to_cart);
-        TextView textViewBuyNow = (TextView) findViewById(R.id.buy_now_button);
+//        TextView textViewAddToCart = findViewById(R.id.add_to_cart);
+//        TextView textViewBuyNow = (TextView) findViewById(R.id.buy_now_button);
 
 
         imageView = findViewById(R.id.product_image);
@@ -158,6 +158,7 @@ public class ProductPage extends AppCompatActivity implements AdapterView.OnItem
                 //  MainActivity.tokenId="abc";
                 if (MainActivity.tokenId != null) {
                     Log.e("Quantity",String.valueOf(quantity.getNumber()));
+//                    quantityInCart= Integer.valueOf(quantity.getNumber());
                     if (quantityInCart== 0) {
                         iApiClass = AppController.retrofitOrderItem.create(IApiClass.class);
                         RequestForAddToCart requestForAddToCart = new RequestForAddToCart();

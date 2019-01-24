@@ -8,7 +8,6 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.onboarding.ecomm.Model.Response.OrderItemResponse;
-import com.onboarding.ecomm.Model.Response.ProductByCategoryResponce;
 import com.onboarding.ecomm.R;
 
 public class MyOrderViewHolder extends RecyclerView.ViewHolder {

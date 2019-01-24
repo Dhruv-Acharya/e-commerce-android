@@ -1,99 +1,100 @@
 package com.onboarding.ecomm.Model.Response;
 
 //import javax.annotation.Generated;
+
 import com.google.gson.annotations.SerializedName;
 
 //@Generated("com.robohorse.robopojogenerator")
-public class MerchantResponse{
+public class MerchantResponse {
 
-	@SerializedName("qunatity")
-	private int qunatity;
+    @SerializedName("qunatity")
+    private int qunatity;
 
-	@SerializedName("merchantId")
-	private String merchantId;
+    @SerializedName("merchantId")
+    private String merchantId;
 
-	@SerializedName("price")
-	private int price;
+    @SerializedName("price")
+    private int price;
 
-	@SerializedName("name")
-	private String name;
+    @SerializedName("name")
+    private String name;
 
-	@SerializedName("rating")
-	private double rating;
+    @SerializedName("rating")
+    private double rating;
 
-	@SerializedName("discount")
-	private int discount;
+    @SerializedName("discount")
+    private int discount;
 
-	@SerializedName("emailId")
-	private Object emailId;
+    @SerializedName("emailId")
+    private Object emailId;
 
-	public void setQunatity(int qunatity){
-		this.qunatity = qunatity;
-	}
+    public int getQunatity() {
+        return qunatity;
+    }
 
-	public int getQunatity(){
-		return qunatity;
-	}
+    public void setQunatity(int qunatity) {
+        this.qunatity = qunatity;
+    }
 
-	public void setMerchantId(String merchantId){
-		this.merchantId = merchantId;
-	}
+    public String getMerchantId() {
+        return merchantId;
+    }
 
-	public String getMerchantId(){
-		return merchantId;
-	}
+    public void setMerchantId(String merchantId) {
+        this.merchantId = merchantId;
+    }
 
-	public void setPrice(int price){
-		this.price = price;
-	}
+    public int getPrice() {
+        return price;
+    }
 
-	public int getPrice(){
-		return price;
-	}
+    public void setPrice(int price) {
+        this.price = price;
+    }
 
-	public void setName(String name){
-		this.name = name;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public String getName(){
-		return name;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	public void setRating(double rating){
-		this.rating = rating;
-	}
+    public double getRating() {
+        return rating;
+    }
 
-	public double getRating(){
-		return rating;
-	}
+    public void setRating(double rating) {
+        this.rating = rating;
+    }
 
-	public void setDiscount(int discount){
-		this.discount = discount;
-	}
+    public int getDiscount() {
+        return discount;
+    }
 
-	public int getDiscount(){
-		return discount;
-	}
+    public void setDiscount(int discount) {
+        this.discount = discount;
+    }
 
-	public void setEmailId(Object emailId){
-		this.emailId = emailId;
-	}
+    public Object getEmailId() {
+        return emailId;
+    }
 
-	public Object getEmailId(){
-		return emailId;
-	}
+    public void setEmailId(Object emailId) {
+        this.emailId = emailId;
+    }
 
-	@Override
- 	public String toString(){
-		return 
-			"MerchantResponse{" + 
-			"qunatity = '" + qunatity + '\'' + 
-			",merchantId = '" + merchantId + '\'' + 
-			",price = '" + price + '\'' + 
-			",name = '" + name + '\'' + 
-			",rating = '" + rating + '\'' + 
-			",discount = '" + discount + '\'' + 
-			",emailId = '" + emailId + '\'' + 
-			"}";
-		}
+    @Override
+    public String toString() {
+        return
+                "MerchantResponse{" +
+                        "qunatity = '" + qunatity + '\'' +
+                        ",merchantId = '" + merchantId + '\'' +
+                        ",price = '" + price + '\'' +
+                        ",name = '" + name + '\'' +
+                        ",rating = '" + rating + '\'' +
+                        ",discount = '" + discount + '\'' +
+                        ",emailId = '" + emailId + '\'' +
+                        "}";
+    }
 }

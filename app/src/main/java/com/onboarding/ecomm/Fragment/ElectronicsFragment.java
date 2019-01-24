@@ -9,13 +9,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.onboarding.ecomm.Adapters.CardViewAdapter;
 import com.onboarding.ecomm.Adapters.Icommunicator;
 import com.onboarding.ecomm.Login.AppController;
 import com.onboarding.ecomm.Login.IApiClass;
-import com.onboarding.ecomm.Model.Response.Category;
 import com.onboarding.ecomm.Model.Response.ProductByCategoryResponce;
 import com.onboarding.ecomm.ProductDetails.ProductPage;
 import com.onboarding.ecomm.R;
@@ -29,24 +27,24 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class ElectronicsFragment extends Fragment implements Icommunicator {
-    private List<String> productId = new ArrayList<>();
-
     List<ProductByCategoryResponce> productByCategoryResponces;
     ArrayList logos = new ArrayList<>(Arrays.asList(R.drawable.splash_icon, R.drawable.splash_icon, R.drawable.splash_icon, R.drawable.splash_icon,
             R.drawable.splash_icon, R.drawable.splash_icon, R.drawable.splash_icon, R.drawable.splash_icon, R.drawable.splash_icon,
             R.drawable.splash_icon));
     ArrayList<String> nameList = new ArrayList(Arrays.asList("10", "11", "12", "13", "14", "15", "DD", "Divanshu", "Anshu", "Srivastava"));
+    List<ProductByCategoryResponce> itemList = new ArrayList<>();
+    private List<String> productId = new ArrayList<>();
     private RecyclerView recyclerView;
     private IApiClass iApiClass;
-    List<ProductByCategoryResponce> itemList = new ArrayList<>();
 
-    public static ElectronicsFragment getElectronicsFragmentInstance(String categoryId){
+    public static ElectronicsFragment getElectronicsFragmentInstance(String categoryId) {
         Bundle args = new Bundle();
         args.putString("categoryId", categoryId);
         ElectronicsFragment fragment = new ElectronicsFragment();
         fragment.setArguments(args);
         return fragment;
     }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,11 +65,10 @@ public class ElectronicsFragment extends Fragment implements Icommunicator {
         iApiClass.getByCategory(getArguments().getString("categoryId")).enqueue(new Callback<List<ProductByCategoryResponce>>() {
             @Override
             public void onResponse(Call<List<ProductByCategoryResponce>> call, Response<List<ProductByCategoryResponce>> response) {
-                if(response.isSuccessful()){
-                    Log.e("Response",response.body().toString());
+                if (response.isSuccessful()) {
+                    Log.e("Response", response.body().toString());
                     productByCategoryResponces = response.body();
-                    for(ProductByCategoryResponce productByCategoryResponce: productByCategoryResponces)
-                    {
+                    for (ProductByCategoryResponce productByCategoryResponce : productByCategoryResponces) {
                         productId.add(productByCategoryResponce.getProductId());
                     }
                     itemList.clear();
@@ -91,10 +88,10 @@ public class ElectronicsFragment extends Fragment implements Icommunicator {
 
     @Override
     public void navigate(int position) {
-        Log.e("ProductId",productId.get(position));
-        Intent intent=new Intent(getContext(), ProductPage.class);
-        Log.e("Position" , String.valueOf(position));
-        intent.putExtra("ProductID",productId.get(position));
+        Log.e("ProductId", productId.get(position));
+        Intent intent = new Intent(getContext(), ProductPage.class);
+        Log.e("Position", String.valueOf(position));
+        intent.putExtra("ProductID", productId.get(position));
         startActivity(intent);
     }
 }

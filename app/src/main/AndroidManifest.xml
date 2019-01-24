@@ -10,11 +10,12 @@
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="LELO.COM"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/ic_launcher_foreground"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:label,android:icon">
-        <activity android:name=".CartActivity"></activity>
+        <activity android:name=".CartActivity"
+            android:parentActivityName=".Main.MainActivity"></activity>
         <activity
             android:name=".OrderActivity"
             android:parentActivityName=".Main.MainActivity" />
@@ -48,8 +49,7 @@
             android:theme="@style/AppTheme.ActionBar" />
         <activity
             android:name=".Search.SearchResultActivity"
-            android:parentActivityName=".Main.MainActivity"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:parentActivityName=".Main.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.SEARCH" />
 

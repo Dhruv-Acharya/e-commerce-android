@@ -12,7 +12,7 @@ import com.onboarding.ecomm.viewholder.CartViewHolder;
 
 import java.util.List;
 
-public class CartAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
+public class CartAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private List<CartResponse> cartResponseList;
 
     public CartAdapter(List<CartResponse> cartResponseList) {
@@ -22,14 +22,14 @@ public class CartAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.cart_layout,viewGroup,false);
+        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.cart_layout, viewGroup, false);
         return new CartViewHolder(view);
 
     }
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
-        ((CartViewHolder)viewHolder).bind(cartResponseList.get(i));
+        ((CartViewHolder) viewHolder).bind(cartResponseList.get(i));
 
     }
 

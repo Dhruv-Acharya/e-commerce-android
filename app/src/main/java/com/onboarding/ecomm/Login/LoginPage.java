@@ -1,7 +1,6 @@
 package com.onboarding.ecomm.Login;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -14,6 +13,7 @@ import com.onboarding.ecomm.R;
 
 public class LoginPage extends AppCompatActivity implements Communicator {
     private static FragmentManager fragmentManager;
+    //SessionManager sessionManager;
 
 
     @Override
@@ -24,6 +24,8 @@ public class LoginPage extends AppCompatActivity implements Communicator {
 
         Login_Fragment login_fragment = new Login_Fragment();
         SignUp_Fragment signUp_fragment = new SignUp_Fragment();
+
+        //sessionManager = new SessionManager(getApplicationContext());
 
         // If savedinstnacestate is null then replace login fragment
         if (savedInstanceState == null) {
@@ -85,9 +87,9 @@ public class LoginPage extends AppCompatActivity implements Communicator {
     @Override
     public void navigateToMain() {
         Intent intent = new Intent(LoginPage.this, MainActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
     }
-
 
 
 }

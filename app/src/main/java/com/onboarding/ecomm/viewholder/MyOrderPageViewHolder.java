@@ -36,7 +36,7 @@ public class MyOrderPageViewHolder extends RecyclerView.ViewHolder {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(orderId.getContext(), OrderActivity.class);
-                intent.putExtra("OrderId",orderId.getText().toString());
+                intent.putExtra("OrderId", orderId.getText().toString());
                 orderId.getContext().startActivity(intent);
             }
         });

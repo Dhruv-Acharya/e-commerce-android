@@ -1,18 +1,17 @@
 package com.onboarding.ecomm.Login;
 
-import com.onboarding.ecomm.Main.CartListActivity;
 import com.onboarding.ecomm.Model.Request.LoginRequest;
 import com.onboarding.ecomm.Model.Request.SignUpRequest;
 import com.onboarding.ecomm.Model.Response.CartResponse;
+import com.onboarding.ecomm.Model.Response.Category;
 import com.onboarding.ecomm.Model.Response.LoginResponse;
 import com.onboarding.ecomm.Model.Response.MerchantResponse;
 import com.onboarding.ecomm.Model.Response.OrderItemResponse;
 import com.onboarding.ecomm.Model.Response.OrderPageResponse;
+import com.onboarding.ecomm.Model.Response.ProductByCategoryResponce;
 import com.onboarding.ecomm.Model.Response.ProductResponse;
 import com.onboarding.ecomm.Model.Response.RequestForAddToCart;
 import com.onboarding.ecomm.Model.Response.SearchResponse;
-import com.onboarding.ecomm.Model.Response.Category;
-import com.onboarding.ecomm.Model.Response.ProductByCategoryResponce;
 
 import java.util.List;
 
@@ -33,33 +32,33 @@ public interface IApiClass {
     public Call<Void> signUp(@Body SignUpRequest signUpRequest);
 
     @POST("cart/{customerId}/{productId}/{merchantId}")
-    public Call<Void> addToCart(@Path("customerId")String customerId,@Path("productId")String productId, @Path("merchantId")String merchantId, @Body RequestForAddToCart quantity);
+    public Call<Void> addToCart(@Path("customerId") String customerId, @Path("productId") String productId, @Path("merchantId") String merchantId, @Body RequestForAddToCart quantity);
 
     @PUT("/cart/update/{customerId}/{productId}/{merchantId}")
-    public Call<Void> updateToCart(@Path("customerId")String customerId,@Path("productId")String productId, @Path("merchantId")String merchantId, @Body RequestForAddToCart quantity);
+    public Call<Void> updateToCart(@Path("customerId") String customerId, @Path("productId") String productId, @Path("merchantId") String merchantId, @Body RequestForAddToCart quantity);
 
     @GET("/product/get/{product_id}")
-    public Call<ProductResponse> getProductReponse(@Path("product_id")String product_id);
+    public Call<ProductResponse> getProductReponse(@Path("product_id") String product_id);
 
     @GET("/product/{name}")
-    public  Call<SearchResponse> getSearchResponse(@Path("name")String name);
+    public Call<SearchResponse> getSearchResponse(@Path("name") String name);
 
     @GET("/category/getAll")
-    public Call<List<Category> >getAllCategory();
+    public Call<List<Category>> getAllCategory();
 
     @GET("/product/getByCategory/{categoryId}")
     public Call<List<ProductByCategoryResponce>> getByCategory(@Path("categoryId") String categoryId);
 
     @GET("/product/getMerchants/{productId}")
-    public Call<List<MerchantResponse>> getMerchants(@Path("productId")String productId);
+    public Call<List<MerchantResponse>> getMerchants(@Path("productId") String productId);
 
     @GET("/order/get/{order_id}")
-    public Call<List<OrderItemResponse>>getOrderItems(@Path("order_id")String order_id);
+    public Call<List<OrderItemResponse>> getOrderItems(@Path("order_id") String order_id);
 
     @GET("/cart/{customerId}")
-    public Call<List<CartResponse>>getCartItems(@Path("customerId")String customerId);
+    public Call<List<CartResponse>> getCartItems(@Path("customerId") String customerId);
 
     @GET("/order/getAll/{customerId}")
-    public Call<List<OrderPageResponse>>getOrderResponse(@Path("customerId")String customerId);
+    public Call<List<OrderPageResponse>> getOrderResponse(@Path("customerId") String customerId);
 
 }

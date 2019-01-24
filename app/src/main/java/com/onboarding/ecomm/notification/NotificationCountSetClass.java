@@ -3,14 +3,12 @@ package com.onboarding.ecomm.notification;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.drawable.LayerDrawable;
-import android.graphics.drawable.VectorDrawable;
-import android.os.Build;
-import android.support.annotation.RequiresApi;
 import android.view.MenuItem;
 
 
 public class NotificationCountSetClass extends Activity {
     private static LayerDrawable icon;
+
     public NotificationCountSetClass() {
         //constructor
     }
@@ -22,7 +20,7 @@ public class NotificationCountSetClass extends Activity {
     }
 
     public static int setNotifyCount(int numMessages) {
-        int count=numMessages;
+        int count = numMessages;
         return count;
 
     }

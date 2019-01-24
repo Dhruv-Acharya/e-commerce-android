@@ -10,7 +10,6 @@ import com.onboarding.ecomm.Adapters.OrderPageAdapter;
 import com.onboarding.ecomm.Login.AppController;
 import com.onboarding.ecomm.Login.IApiClass;
 import com.onboarding.ecomm.Model.Response.OrderPageResponse;
-import com.onboarding.ecomm.OrderActivity;
 import com.onboarding.ecomm.R;
 
 import java.util.ArrayList;
@@ -36,9 +35,9 @@ public class OrderPageActivity extends AppCompatActivity {
         iApiClass.getOrderResponse(MainActivity.tokenId).enqueue(new Callback<List<OrderPageResponse>>() {
             @Override
             public void onResponse(Call<List<OrderPageResponse>> call, Response<List<OrderPageResponse>> response) {
-                Log.d("Response1",response.body().toString());
+                Log.d("Response1", response.body().toString());
                 orderList = response.body();
-                Log.d("Response2",response.body().toString());
+                Log.d("Response2", response.body().toString());
                 orderPageAdapter = new OrderPageAdapter(orderList);
                 recyclerView.setAdapter(orderPageAdapter);
                 recyclerView.setLayoutManager(new LinearLayoutManager(OrderPageActivity.this));

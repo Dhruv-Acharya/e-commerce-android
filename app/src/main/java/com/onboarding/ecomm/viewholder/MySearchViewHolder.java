@@ -15,10 +15,11 @@ public class MySearchViewHolder extends RecyclerView.ViewHolder {
 
     public MySearchViewHolder(@NonNull View itemView) {
         super(itemView);
-        productName=itemView.findViewById(R.id.productName);
-        productImage=itemView.findViewById(R.id.searchResultImage);
+        productName = itemView.findViewById(R.id.searchProductName);
+        productImage = itemView.findViewById(R.id.searchResultImage);
     }
-    public void bind(String productname,String imageUrl){
+
+    public void bind(String productname, String imageUrl) {
         productName.setText(productname);
         Glide.with(productImage.getContext()).load(imageUrl).into(productImage);
     }

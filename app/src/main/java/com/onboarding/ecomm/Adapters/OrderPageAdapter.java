@@ -19,7 +19,7 @@ public class OrderPageAdapter extends RecyclerView.Adapter {
     public OrderPageAdapter(List<OrderPageResponse> orderPageResponse) {
         Log.d("Response3", "Constructor");
         this.orderPageResponse = orderPageResponse;
-        Log.d("Response4", "Constructor got"+this.orderPageResponse.toString());
+        Log.d("Response4", "Constructor got" + this.orderPageResponse.toString());
     }
 
     @NonNull

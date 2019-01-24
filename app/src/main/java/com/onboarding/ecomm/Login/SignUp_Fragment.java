@@ -15,6 +15,7 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import com.onboarding.ecomm.Model.Request.SignUpRequest;
 import com.onboarding.ecomm.R;
 
@@ -24,8 +25,6 @@ import java.util.regex.Pattern;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-
-import static com.onboarding.ecomm.Main.MainActivity.tokenId;
 
 public class SignUp_Fragment extends Fragment implements OnClickListener {
 
@@ -182,8 +181,8 @@ public class SignUp_Fragment extends Fragment implements OnClickListener {
 
                 @Override
                 public void onFailure(Call<Void> call, Throwable t) {
-                        Toast.makeText(getContext(), "Signup Failure", Toast.LENGTH_LONG).show();
-                    }
+                    Toast.makeText(getContext(), "Signup Failure", Toast.LENGTH_LONG).show();
+                }
             });
         }
     }

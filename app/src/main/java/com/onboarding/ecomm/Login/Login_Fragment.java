@@ -1,7 +1,5 @@
 package com.onboarding.ecomm.Login;
 
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
 import android.content.res.XmlResourceParser;
 import android.os.Bundle;
@@ -51,6 +49,7 @@ public class Login_Fragment extends Fragment implements OnClickListener {
     private static Animation shakeAnimation;
     private static FragmentManager fragmentManager;
     private IApiClass iApiClass;
+    //private SessionManager sessionManager;
 
 
     public Login_Fragment() {
@@ -75,6 +74,7 @@ public class Login_Fragment extends Fragment implements OnClickListener {
         initViews();
         setListeners();
         iApiClass = AppController.retrofit.create(IApiClass.class);
+        //sessionManager = new SessionManager(getContext());
     }
 
     // Initiate Views
@@ -214,7 +214,10 @@ public class Login_Fragment extends Fragment implements OnClickListener {
                 @Override
                 public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
                     if (response.code() == 200) {
-                        tokenId=response.body().getCustomerId().toString();
+                        tokenId = response.body().getCustomerId();
+
+                        // sessionManager.createLoginSession( response.body().getCustomerId().toString());
+                        // Log.d("Session",String.valueOf(sessionManager.isLoggedIn()));
                         communicator.navigateToMain();
 
 

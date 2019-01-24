@@ -1,11 +1,9 @@
 package com.onboarding.ecomm.Main;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
-
-import android.support.design.widget.TabLayout;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -19,10 +17,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import com.onboarding.ecomm.CartActivity;
 import com.onboarding.ecomm.Fragment.ElectronicsFragment;
@@ -30,12 +28,10 @@ import com.onboarding.ecomm.Login.AppController;
 import com.onboarding.ecomm.Login.IApiClass;
 import com.onboarding.ecomm.Login.LoginPage;
 import com.onboarding.ecomm.Model.Response.Category;
-import com.onboarding.ecomm.OrderActivity;
 import com.onboarding.ecomm.R;
 import com.onboarding.ecomm.Search.SearchResultActivity;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import retrofit2.Call;
@@ -54,6 +50,8 @@ public class MainActivity extends AppCompatActivity
     private FloatingActionButton floatingActionButton;
     private CardView cardView;
     private IApiClass iApiClass;
+    //private SessionManager session;
+    private boolean doubleBackToExitPressedOnce;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,14 +70,27 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         floatingActionButton = findViewById(R.id.fab);
-        floatingActionButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, LoginPage.class);
-                startActivity(intent);
-            }
-        });
 
+        if(tokenId!=null) {
+            floatingActionButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(MainActivity.this, LoginPage.class);
+                    startActivity(intent);
+                }
+            });
+        }else{
+            floatingActionButton.setClickable(false);
+        }
+
+        //session = new SessionManager(getApplicationContext());
+        //Toast.makeText(getApplicationContext(), "User Login Status: " + session.isLoggedIn(), Toast.LENGTH_LONG).show();
+
+        //session.checkLogin();
+
+        //HashMap<String, String> user = session.getUserDetails();
+
+        //String customerId = user.get(SessionManager.CUSTOMER_ID);
 
         viewPager = findViewById(R.id.viewpager);
         tabLayout = findViewById(R.id.tabs);
@@ -100,7 +111,7 @@ public class MainActivity extends AppCompatActivity
 
             }
 
-    });
+        });
         if (viewPager != null) {
             tabLayout.setupWithViewPager(viewPager);
         }
@@ -112,7 +123,20 @@ public class MainActivity extends AppCompatActivity
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            super.onBackPressed();
+            if (doubleBackToExitPressedOnce = true) {
+                super.onBackPressed();
+                return;
+            }
+            this.doubleBackToExitPressedOnce = true;
+            Toast.makeText(this, "Please click BACK again to exit", Toast.LENGTH_SHORT).show();
+
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    doubleBackToExitPressedOnce = false;
+                }
+            }, 2000);
+
         }
     }
 
@@ -129,13 +153,11 @@ public class MainActivity extends AppCompatActivity
             startActivity(new Intent(MainActivity.this, SearchResultActivity.class));
             return true;
         } else if (id == R.id.action_cart) {
-            Intent intent=new Intent(MainActivity.this, CartActivity.class);
-            intent.putExtra("CustomerId",tokenId);
+            Intent intent = new Intent(MainActivity.this, CartActivity.class);
+            intent.putExtra("CustomerId", tokenId);
             startActivity(intent);
             return true;
-        }
-
-        else if(id==R.id.my_orders){
+        } else if (id == R.id.my_orders) {
             //startActivity(new Intent(MainActivity.this, OrderPageActivity.class));
             return true;
 
@@ -148,8 +170,12 @@ public class MainActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         int itemId = item.getItemId();
 
-         if (itemId == R.id.my_orders) {
-             startActivity(new Intent(MainActivity.this, OrderPageActivity.class));
+        if (itemId == R.id.my_orders) {
+            startActivity(new Intent(MainActivity.this, OrderPageActivity.class));
+        } else if (itemId == R.id.my_cart) {
+            //session.logoutUser();
+            startActivity(new Intent(MainActivity.this, CartActivity.class));
+
         }
 
 

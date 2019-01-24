@@ -3,7 +3,6 @@ package com.onboarding.ecomm.notification;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LayerDrawable;
-import android.graphics.drawable.VectorDrawable;
 
 import com.onboarding.ecomm.R;
 
