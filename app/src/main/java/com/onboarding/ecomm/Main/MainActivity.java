@@ -196,6 +196,12 @@ public class MainActivity extends AppCompatActivity
                 startActivity(intent);
             }
         }
+        else if(itemId==R.id.logout){
+            if(tokenId!=null){
+                item.setVisible(true);
+
+            }
+        }
 
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);

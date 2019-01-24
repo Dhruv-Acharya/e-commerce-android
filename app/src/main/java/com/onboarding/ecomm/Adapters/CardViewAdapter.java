@@ -3,6 +3,7 @@ package com.onboarding.ecomm.Adapters;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -59,12 +60,13 @@ class MyViewHolder extends RecyclerView.ViewHolder {
 
     public MyViewHolder(@NonNull View itemView) {
         super(itemView);
-        name = itemView.findViewById(R.id.name);
+        name = itemView.findViewById(R.id.product_name_by_category);
         image = itemView.findViewById(R.id.cardimage);
-        price = itemView.findViewById(R.id.price);
+        price = itemView.findViewById(R.id.product_price_by_category);
     }
 
     void bind(String item, String imageUrl, final Icommunicator icommunicator) {
+
         name.setText(item);
         // use Glide
         Glide.with(image.getContext()).load(imageUrl).into(image);

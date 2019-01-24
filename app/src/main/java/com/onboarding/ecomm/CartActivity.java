@@ -5,10 +5,12 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
 import com.onboarding.ecomm.Adapters.CartAdapter;
+import com.onboarding.ecomm.Adapters.CartCommunicator;
 import com.onboarding.ecomm.Login.AppController;
 import com.onboarding.ecomm.Login.IApiClass;
 import com.onboarding.ecomm.Model.Response.CartResponse;
@@ -20,7 +22,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class CartActivity extends AppCompatActivity {
+public class CartActivity extends AppCompatActivity implements CartCommunicator {
     private RecyclerView recyclerView;
     private CartAdapter adapter;
     private IApiClass iApiClass;
@@ -28,7 +30,8 @@ public class CartActivity extends AppCompatActivity {
     private List<CartResponse> cartResponseList = new ArrayList<>();
     private TextView totalQuantity;
     private TextView totalAmount;
-    private Button BuyNow;
+    private Button buyNow;
+    private Button remove;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,21 +40,43 @@ public class CartActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         customerId = intent.getStringExtra("CustomerId");
+        remove=findViewById(R.id.remove);
 
         totalAmount = findViewById(R.id.totalAmount);
         totalQuantity = findViewById(R.id.totalQuantity);
 
 
         iApiClass = AppController.retrofitOrderItem.create(IApiClass.class);
+        loadScreen();
+
+
+//        remove.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//
+//                iApiClass.deleteProduct(customerId,)
+//                loadScreen();
+//
+//            }
+//        });
+
+
+    }
+    private void loadScreen()
+    {
         iApiClass.getCartItems(customerId).enqueue(new Callback<List<CartResponse>>() {
             @Override
             public void onResponse(Call<List<CartResponse>> call, Response<List<CartResponse>> response) {
                 cartResponseList = response.body();
                 recyclerView = findViewById(R.id.recyclerViewCart);
-                adapter = new CartAdapter(cartResponseList);
+                adapter = new CartAdapter(cartResponseList,CartActivity.this);
+//                adapter.setCartCommunicator(CartActivity.this);
                 recyclerView.setAdapter(adapter);
                 recyclerView.setLayoutManager(new LinearLayoutManager(CartActivity.this));
                 addQuantityAndAmount(cartResponseList);
+
+
+
 
 
             }
@@ -61,7 +86,6 @@ public class CartActivity extends AppCompatActivity {
 
             }
         });
-
 
     }
 
@@ -77,5 +101,12 @@ public class CartActivity extends AppCompatActivity {
         totalAmount.setText(String.valueOf(totalAmountInternal));
         totalQuantity.setText(String.valueOf(totalQuantityInternal));
     }
+
+
+    @Override
+    public void doOnclick(final String productId, final String merchantId) {
+        iApiClass.deleteProduct(customerId,productId,merchantId);
+    }
 }
+
 
