@@ -27,11 +27,12 @@ public class SessionManager {
     public void createLoginSession(String customerId) {
 
         editor.putString(CUSTOMER_ID, customerId);
+        editor.putBoolean(IS_LOGIN, true);
 
         editor.commit();
     }
 
-    public void checkLogin() {
+    public void checkLogin(Context context) {
 
         if (!this.isLoggedIn()) {
             Intent i = new Intent(context, LoginPage.class);
@@ -54,7 +55,7 @@ public class SessionManager {
         return user;
     }
 
-    public void logoutUser() {
+    public void logoutUser(Context context) {
 
         editor.clear();
         editor.commit();

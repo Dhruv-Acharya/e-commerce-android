@@ -32,15 +32,16 @@ public class OrderPageActivity extends AppCompatActivity {
         setContentView(R.layout.activity_order_page);
         recyclerView = findViewById(R.id.recyclerViewOrder);
         iApiClass = AppController.retrofitOrderItem.create(IApiClass.class);
+        orderPageAdapter = new OrderPageAdapter(orderList);
+        recyclerView.setLayoutManager(new LinearLayoutManager(OrderPageActivity.this));
+        recyclerView.setAdapter(orderPageAdapter);
         iApiClass.getOrderResponse(MainActivity.tokenId).enqueue(new Callback<List<OrderPageResponse>>() {
             @Override
             public void onResponse(Call<List<OrderPageResponse>> call, Response<List<OrderPageResponse>> response) {
                 Log.d("Response1", response.body().toString());
                 orderList = response.body();
                 Log.d("Response2", response.body().toString());
-                orderPageAdapter = new OrderPageAdapter(orderList);
-                recyclerView.setAdapter(orderPageAdapter);
-                recyclerView.setLayoutManager(new LinearLayoutManager(OrderPageActivity.this));
+                orderPageAdapter.notifyDataSetChanged();
             }
 
             @Override
