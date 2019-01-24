@@ -17,6 +17,7 @@ import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
@@ -60,5 +61,8 @@ public interface IApiClass {
 
     @GET("/order/getAll/{customerId}")
     public Call<List<OrderPageResponse>> getOrderResponse(@Path("customerId") String customerId);
+
+    @DELETE("/cart/removeItem/{customerId}/{productId}/{merchantId}")
+    public Call<Void> deleteProduct(@Path("customerId") String customerId,@Path("productId")String productId, @Path("merchantId")String merchantId);
 
 }
