@@ -31,6 +31,7 @@ import com.onboarding.ecomm.Model.Response.Category;
 import com.onboarding.ecomm.PrefManager;
 import com.onboarding.ecomm.R;
 import com.onboarding.ecomm.Search.SearchResultActivity;
+import com.onboarding.ecomm.session.SessionManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -74,7 +75,8 @@ public class MainActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
         floatingActionButton = findViewById(R.id.fab);
 
-        if(tokenId==null) {
+        SessionManager sessionManager = new SessionManager(this);
+        if(!sessionManager.isLoggedIn()) {
             floatingActionButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -156,7 +158,8 @@ public class MainActivity extends AppCompatActivity
             startActivity(new Intent(MainActivity.this, SearchResultActivity.class));
             return true;
         } else if (id == R.id.action_cart) {
-            if(tokenId!=null) {
+            SessionManager sessionManager = new SessionManager(this);
+            if(sessionManager.isLoggedIn()) {
                 Intent intent = new Intent(MainActivity.this, CartActivity.class);
                 intent.putExtra("CustomerId", tokenId);
                 startActivity(intent);
@@ -176,9 +179,9 @@ public class MainActivity extends AppCompatActivity
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         int itemId = item.getItemId();
-
+        SessionManager sessionManager = new SessionManager(this);
         if (itemId == R.id.my_orders) {
-            if (tokenId != null) {
+            if (sessionManager.isLoggedIn()) {
                 Intent intent = new Intent(MainActivity.this, OrderPageActivity.class);
                 startActivity(intent);
             } else {
@@ -187,7 +190,7 @@ public class MainActivity extends AppCompatActivity
             }
         } else if (itemId == R.id.my_cart) {
             //session.logoutUser();
-            if (tokenId != null) {
+            if (sessionManager.isLoggedIn()) {
                 Intent intent = new Intent(MainActivity.this, CartActivity.class);
                 intent.putExtra("CustomerId", tokenId);
                 startActivity(intent);

@@ -23,6 +23,7 @@ import com.onboarding.ecomm.Model.Response.MerchantResponse;
 import com.onboarding.ecomm.Model.Response.ProductResponse;
 import com.onboarding.ecomm.Model.Response.RequestForAddToCart;
 import com.onboarding.ecomm.R;
+import com.onboarding.ecomm.session.SessionManager;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -62,7 +63,7 @@ public class ProductPage extends AppCompatActivity implements AdapterView.OnItem
         merchant = findViewById(R.id.merchant_spinner);
         quantity = findViewById(R.id.quantity);
         quantity.setNumber(String.valueOf(0));
-
+        final SessionManager sessionManager = new SessionManager(this);
 
         merchant.setOnItemSelectedListener(this);
         productId = getIntent().getStringExtra("ProductID");
@@ -168,7 +169,7 @@ public class ProductPage extends AppCompatActivity implements AdapterView.OnItem
             public void onClick(View v) {
                 Log.d("Failure2", String.valueOf(MainActivity.tokenId));
                 //  MainActivity.tokenId="abc";
-                if (MainActivity.tokenId != null) {
+                if (sessionManager.isLoggedIn()) {
                     Log.e("Quantity",String.valueOf(quantity.getNumber()));
 //                    quantityInCart= Integer.valueOf(quantity.getNumber());
                     if (quantityInCart== 0) {

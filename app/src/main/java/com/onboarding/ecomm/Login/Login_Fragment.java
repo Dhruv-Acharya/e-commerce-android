@@ -10,6 +10,7 @@ import android.support.v4.app.FragmentManager;
 import android.text.InputType;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -28,6 +29,7 @@ import android.widget.Toast;
 import com.onboarding.ecomm.Model.Request.LoginRequest;
 import com.onboarding.ecomm.Model.Response.LoginResponse;
 import com.onboarding.ecomm.R;
+import com.onboarding.ecomm.session.SessionManager;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -49,7 +51,7 @@ public class Login_Fragment extends Fragment implements OnClickListener {
     private static Animation shakeAnimation;
     private static FragmentManager fragmentManager;
     private IApiClass iApiClass;
-    //private SessionManager sessionManager;
+    private SessionManager sessionManager;
 
 
     public Login_Fragment() {
@@ -74,7 +76,7 @@ public class Login_Fragment extends Fragment implements OnClickListener {
         initViews();
         setListeners();
         iApiClass = AppController.retrofit.create(IApiClass.class);
-        //sessionManager = new SessionManager(getContext());
+        if (getContext() != null) sessionManager = new SessionManager(getContext());
     }
 
     // Initiate Views
@@ -216,8 +218,9 @@ public class Login_Fragment extends Fragment implements OnClickListener {
                     if (response.code() == 200) {
                         tokenId = response.body().getCustomerId();
 
+                        sessionManager.createLoginSession(response.body().getCustomerId());
                         // sessionManager.createLoginSession( response.body().getCustomerId().toString());
-                        // Log.d("Session",String.valueOf(sessionManager.isLoggedIn()));
+                        Log.d("Session",String.valueOf(sessionManager.isLoggedIn()));
                         communicator.navigateToMain();
 
 

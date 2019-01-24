@@ -2,6 +2,8 @@ package com.onboarding.ecomm.Login;
 
 import android.app.Application;
 
+import com.onboarding.ecomm.session.SessionManager;
+
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -24,6 +26,9 @@ public class AppController extends Application {
                     .addConverterFactory(GsonConverterFactory.create())
                     .client(client)
                     .build();
+
+            SessionManager s  = new SessionManager(this);
+
 
         }
 
