@@ -45,7 +45,8 @@ public class LoginPage extends AppCompatActivity implements Communicator {
 
                     @Override
                     public void onClick(View arg0) {
-                        finish();
+                        Intent intent=new Intent(LoginPage.this,MainActivity.class);
+                        startActivity(intent);
 
                     }
                 });

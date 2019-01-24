@@ -1,5 +1,6 @@
 package com.onboarding.ecomm.ProductDetails;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -16,6 +17,7 @@ import com.bumptech.glide.Glide;
 import com.cepheuen.elegantnumberbutton.view.ElegantNumberButton;
 import com.onboarding.ecomm.Login.AppController;
 import com.onboarding.ecomm.Login.IApiClass;
+import com.onboarding.ecomm.Login.LoginPage;
 import com.onboarding.ecomm.Main.MainActivity;
 import com.onboarding.ecomm.Model.Response.MerchantResponse;
 import com.onboarding.ecomm.Model.Response.ProductResponse;
@@ -93,6 +95,16 @@ public class ProductPage extends AppCompatActivity implements AdapterView.OnItem
 //
 //            }
 //        });
+        findViewById(R.id.back).setOnClickListener(
+                new View.OnClickListener() {
+
+                    @Override
+                    public void onClick(View arg0) {
+                        Intent intent=new Intent(ProductPage.this,MainActivity.class);
+                        startActivity(intent);
+
+                    }
+                });
 
 
         System.out.println(productId + "ProductID");

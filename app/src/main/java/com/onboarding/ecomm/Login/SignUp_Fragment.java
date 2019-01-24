@@ -1,7 +1,9 @@
 package com.onboarding.ecomm.Login;
 
+import android.annotation.SuppressLint;
 import android.content.res.ColorStateList;
 import android.content.res.XmlResourceParser;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -12,6 +14,7 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -73,9 +76,24 @@ public class SignUp_Fragment extends Fragment implements OnClickListener {
         signUpButton = (Button) view.findViewById(R.id.signUpBtn);
         login = (TextView) view.findViewById(R.id.already_user);
         terms_conditions = (CheckBox) view.findViewById(R.id.terms_conditions);
+        signUpButton.setEnabled(false);
+        terms_conditions.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    signUpButton.setTextColor(Color.parseColor("#2997D8"));
+                    signUpButton.setEnabled(true);
+                } else {
+                    signUpButton.setTextColor(Color.parseColor("#9E9E9E"));
+                    signUpButton.setEnabled(false);
+                }
+            }
+        });
+
 
         // Setting text selector over textviews
-        XmlResourceParser xrp = getResources().getXml(R.drawable.text_selector);
+        @SuppressLint("ResourceType") XmlResourceParser xrp = getResources().getXml(R.drawable.text_selector);
         try {
             ColorStateList csl = ColorStateList.createFromXml(getResources(),
                     xrp);

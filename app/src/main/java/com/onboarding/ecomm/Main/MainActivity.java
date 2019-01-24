@@ -28,6 +28,7 @@ import com.onboarding.ecomm.Login.AppController;
 import com.onboarding.ecomm.Login.IApiClass;
 import com.onboarding.ecomm.Login.LoginPage;
 import com.onboarding.ecomm.Model.Response.Category;
+import com.onboarding.ecomm.PrefManager;
 import com.onboarding.ecomm.R;
 import com.onboarding.ecomm.Search.SearchResultActivity;
 
@@ -52,6 +53,7 @@ public class MainActivity extends AppCompatActivity
     private IApiClass iApiClass;
     //private SessionManager session;
     private boolean doubleBackToExitPressedOnce;
+    private PrefManager prefManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +62,7 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = findViewById(R.id.toolbar);
         toolbar.setTitle("LELO.COM");
         setSupportActionBar(toolbar);
+
 
         drawer = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -71,7 +74,7 @@ public class MainActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
         floatingActionButton = findViewById(R.id.fab);
 
-        if(tokenId!=null) {
+        if(tokenId==null) {
             floatingActionButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -153,15 +156,19 @@ public class MainActivity extends AppCompatActivity
             startActivity(new Intent(MainActivity.this, SearchResultActivity.class));
             return true;
         } else if (id == R.id.action_cart) {
-            Intent intent = new Intent(MainActivity.this, CartActivity.class);
-            intent.putExtra("CustomerId", tokenId);
-            startActivity(intent);
+            if(tokenId!=null) {
+                Intent intent = new Intent(MainActivity.this, CartActivity.class);
+                intent.putExtra("CustomerId", tokenId);
+                startActivity(intent);
+            }
+            else{
+                Intent intent = new Intent(MainActivity.this, LoginPage.class);
+                startActivity(intent);
+            }
             return true;
-        } else if (id == R.id.my_orders) {
-            //startActivity(new Intent(MainActivity.this, OrderPageActivity.class));
-            return true;
-
         }
+
+
         return super.onOptionsItemSelected(item);
     }
 
@@ -171,11 +178,23 @@ public class MainActivity extends AppCompatActivity
         int itemId = item.getItemId();
 
         if (itemId == R.id.my_orders) {
-            startActivity(new Intent(MainActivity.this, OrderPageActivity.class));
+            if (tokenId != null) {
+                Intent intent = new Intent(MainActivity.this, OrderPageActivity.class);
+                startActivity(intent);
+            } else {
+                Intent intent = new Intent(MainActivity.this, LoginPage.class);
+                startActivity(intent);
+            }
         } else if (itemId == R.id.my_cart) {
             //session.logoutUser();
-            startActivity(new Intent(MainActivity.this, CartActivity.class));
-
+            if (tokenId != null) {
+                Intent intent = new Intent(MainActivity.this, CartActivity.class);
+                intent.putExtra("CustomerId", tokenId);
+                startActivity(intent);
+            } else {
+                Intent intent = new Intent(MainActivity.this, LoginPage.class);
+                startActivity(intent);
+            }
         }
 
 
@@ -193,6 +212,7 @@ public class MainActivity extends AppCompatActivity
         viewPager.setAdapter(adapter);
 
     }
+
 }
 
 class ViewPagerAdapter extends FragmentPagerAdapter {
