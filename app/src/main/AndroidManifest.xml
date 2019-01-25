@@ -19,8 +19,12 @@
         <activity
             android:name=".CartActivity"
             android:parentActivityName=".Main.MainActivity" />
+        <activity android:name=".CartActivity"
+            android:label="My Cart"
+            android:parentActivityName=".Main.MainActivity"></activity>
         <activity
             android:name=".OrderActivity"
+            android:label="My Orders"
             android:parentActivityName=".Main.MainActivity" />
         <activity
             android:name=".Login.LoginPage"
@@ -65,6 +69,7 @@
         </activity>
         <activity
             android:name=".Main.OrderPageActivity"
+            android:label="My Order Items"
             android:parentActivityName=".Main.MainActivity"
             tools:ignore="DuplicateActivity" />
     </application>

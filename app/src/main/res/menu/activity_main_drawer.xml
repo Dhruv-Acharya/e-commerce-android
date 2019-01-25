@@ -11,11 +11,18 @@
             <item
                 android:id="@+id/my_cart"
                 android:title="@string/my_cart" />
-            <item
-                android:id="@+id/logout"
-                android:title="Logout" />
+
         </menu>
     </item>
 
+    <item android:title="">
+        <menu>
+            <item
+                android:id="@+id/logout"
+                android:title="Log out"
+                android:visible="false"
+                />
+        </menu>
+    </item>
 
 </menu>

@@ -184,14 +184,17 @@ public class SignUp_Fragment extends Fragment implements OnClickListener {
                 public void onResponse(Call<Void> call, Response<Void> response) {
 
                     if (response.code() == 201) {
-                        communicator.navigateToMain();
+                        new LoginPage().replaceLoginFragment();
+
+                        //communicator.navigateToMain();
 
                         Toast.makeText(
 
-                                getActivity(), "SignUp Complete", Toast.LENGTH_SHORT)
+                                getActivity(), "SignUp Complete, Please Login", Toast.LENGTH_SHORT)
                                 .
 
                                         show();
+
                     } else {
                         Toast.makeText(getContext(), "Signup Failure", Toast.LENGTH_LONG).show();
                     }
