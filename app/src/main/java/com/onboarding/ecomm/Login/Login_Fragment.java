@@ -222,6 +222,7 @@ public class Login_Fragment extends Fragment implements OnClickListener {
                         // sessionManager.createLoginSession( response.body().getCustomerId().toString());
                         Log.d("Session",String.valueOf(sessionManager.isLoggedIn()));
                         communicator.navigateToMain();
+                        Toast.makeText(getContext(),"Logged in Successfully",Toast.LENGTH_SHORT).show();
 
 
                     } else {

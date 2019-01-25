@@ -21,6 +21,7 @@ import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 public interface IApiClass {
 
@@ -40,8 +41,8 @@ public interface IApiClass {
     @GET("/product/get/{product_id}")
     public Call<ProductResponse> getProductReponse(@Path("product_id") String product_id);
 
-    @GET("/product/{name}")
-    public Call<SearchResponse> getSearchResponse(@Path("name") String name);
+    @GET("/product/name")
+    public Call<SearchResponse> getSearchResponse(@Query("name")String name);
 
     @GET("/category/getAll")
     public Call<List<Category>> getAllCategory();

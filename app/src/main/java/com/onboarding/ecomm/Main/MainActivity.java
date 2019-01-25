@@ -3,6 +3,7 @@ package com.onboarding.ecomm.Main;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.design.internal.NavigationMenu;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
@@ -120,6 +121,14 @@ public class MainActivity extends AppCompatActivity
         if (viewPager != null) {
             tabLayout.setupWithViewPager(viewPager);
         }
+
+        Menu NavMenu=navigationView.getMenu();
+        if(sessionManager.isLoggedIn()){
+            NavMenu.findItem(R.id.logout).setVisible(true);
+        }
+        else{
+            NavMenu.findItem(R.id.logout).setVisible(false);
+        }
     }
 
     @Override
@@ -167,6 +176,7 @@ public class MainActivity extends AppCompatActivity
             else{
                 Intent intent = new Intent(MainActivity.this, LoginPage.class);
                 startActivity(intent);
+                Toast.makeText(this,"Login before accessing orders",Toast.LENGTH_SHORT).show();
             }
             return true;
         }
@@ -187,6 +197,7 @@ public class MainActivity extends AppCompatActivity
             } else {
                 Intent intent = new Intent(MainActivity.this, LoginPage.class);
                 startActivity(intent);
+                Toast.makeText(this,"Login before accessing orders",Toast.LENGTH_SHORT).show();
             }
         } else if (itemId == R.id.my_cart) {
             //session.logoutUser();
@@ -197,6 +208,17 @@ public class MainActivity extends AppCompatActivity
             } else {
                 Intent intent = new Intent(MainActivity.this, LoginPage.class);
                 startActivity(intent);
+                Toast.makeText(this,"Login before accessing orders",Toast.LENGTH_SHORT).show();
+            }
+        }
+        else if(itemId==R.id.logout){
+            if(sessionManager.isLoggedIn()){
+                sessionManager.logoutUser(this);
+                Intent intent = new Intent(MainActivity.this, MainActivity.class);
+                startActivity(intent);
+                Toast.makeText(this,"Logged Out!",Toast.LENGTH_SHORT).show();
+
+
             }
         }
 
