@@ -6,16 +6,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.onboarding.ecomm.Model.Response.CartResponse;
+import com.onboarding.ecomm.Model.Response.AddressResponse;
 import com.onboarding.ecomm.R;
 import com.onboarding.ecomm.viewholder.MyAddressViewHolder;
 
 import java.util.List;
 
 public class AddressAdapter extends RecyclerView.Adapter {
-    private List<CartResponse> addressList;
+    private List<AddressResponse> addressList;
 
-    public AddressAdapter(List<CartResponse> addressList) {
+    public AddressAdapter(List<AddressResponse> addressList) {
         this.addressList = addressList;
     }
 
@@ -29,7 +29,7 @@ public class AddressAdapter extends RecyclerView.Adapter {
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
-        ((MyAddressViewHolder) viewHolder).bind(cartResponseList.get(i));
+        ((MyAddressViewHolder) viewHolder).bind(addressList.get(i).getAddress());
 
     }
 

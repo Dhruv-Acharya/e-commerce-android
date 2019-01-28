@@ -13,6 +13,8 @@ import com.onboarding.ecomm.Adapters.CartAdapter;
 import com.onboarding.ecomm.Adapters.CartCommunicator;
 import com.onboarding.ecomm.Login.AppController;
 import com.onboarding.ecomm.Login.IApiClass;
+import com.onboarding.ecomm.Main.AddressActivity;
+import com.onboarding.ecomm.Main.MainActivity;
 import com.onboarding.ecomm.Model.Response.CartResponse;
 
 import java.util.ArrayList;
@@ -38,16 +40,29 @@ public class CartActivity extends AppCompatActivity implements CartCommunicator 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cart);
 
+
         Intent intent = getIntent();
         customerId = intent.getStringExtra("CustomerId");
         remove=findViewById(R.id.remove);
 
         totalAmount = findViewById(R.id.totalAmount);
         totalQuantity = findViewById(R.id.totalQuantity);
-
+        buyNow=findViewById(R.id.bOrderNow);
 
         iApiClass = AppController.retrofitOrderItem.create(IApiClass.class);
         loadScreen();
+
+
+        buyNow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(CartActivity.this, AddressActivity.class);
+                intent.putExtra("CustomerId", MainActivity.tokenId);
+
+                startActivity(intent);
+
+            }
+        });
 
 
 //        remove.setOnClickListener(new View.OnClickListener() {

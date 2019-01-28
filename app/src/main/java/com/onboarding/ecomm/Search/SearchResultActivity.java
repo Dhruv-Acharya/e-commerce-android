@@ -6,17 +6,18 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
 import com.onboarding.ecomm.Adapters.SearchAdapter;
 import com.onboarding.ecomm.Login.AppController;
 import com.onboarding.ecomm.Login.IApiClass;
 import com.onboarding.ecomm.Model.Response.SearchResponse;
 import com.onboarding.ecomm.R;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -26,10 +27,10 @@ public class SearchResultActivity extends AppCompatActivity {
 
 
     RecyclerView recyclerView;
-    List<SearchResponse> searchResponse;
+    List<SearchResponse> searchResponse = new ArrayList<>();
     private IApiClass iApiClass;
     private String productId = null;
-    private String name = null;
+    private EditText name;
     private String usp = null;
     private String description = null;
     private String imageUrl = null;
@@ -46,6 +47,11 @@ public class SearchResultActivity extends AppCompatActivity {
         iApiClass = AppController.retrofit.create(IApiClass.class);
         searchProductName = findViewById(R.id.searchProductName);
         searchResultImage = findViewById(R.id.searchResultImage);
+        name=findViewById(R.id.et);
+
+        recyclerView = findViewById(R.id.recyclerViewSearch);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(linearLayoutManager);
 
 
         ((EditText) findViewById(R.id.et)).addTextChangedListener(new TextWatcher() {
@@ -56,40 +62,39 @@ public class SearchResultActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                iApiClass = AppController.retrofitProduct.create(IApiClass.class);
-                iApiClass.getSearchResponse(name).enqueue(new Callback<SearchResponse>() {
-                    @Override
-                    public void onResponse(Call<SearchResponse> call, retrofit2.Response<SearchResponse> response) {
-                        productId = response.body().getProductId();
-                        usp = response.body().getUsp();
-                        description = response.body().getDescription();
-                        imageUrl = response.body().getImageUrl();
-                        rating = response.body().getRating();
-                        priceRange = response.body().getPriceRange();
-                        searchProductName.setText(response.body().getName());
-                        Glide.with(searchResultImage.getContext())
-                                .load(imageUrl)
-                                .into(searchResultImage);
 
-                        recyclerView = findViewById(R.id.recyclerViewSearch);
-                        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(recyclerView.getContext());
-                        recyclerView.setLayoutManager(linearLayoutManager);
-                        SearchAdapter searchAdapter = new SearchAdapter(searchResponse);
+                iApiClass = AppController.retrofitSearchItem.create(IApiClass.class);
+                iApiClass.getSearchResponse(s.toString()).enqueue(new Callback<List<SearchResponse>>() {
+                    @Override
+                    public void onResponse(Call<List<SearchResponse>> call, retrofit2.Response<List<SearchResponse>> response) {
+
+                        Log.e("response",response.body().toString());
+                        searchResponse.clear();
+                        List<SearchResponse> temp = response.body();
+                        if (temp.size() > 0) {
+                            searchResponse.addAll(temp);
+                        }
+                        final SearchAdapter searchAdapter = new SearchAdapter(searchResponse);
                         recyclerView.setAdapter(searchAdapter);
+                        searchAdapter.notifyDataSetChanged();
 
 
                     }
 
                     @Override
-                    public void onFailure(Call<SearchResponse> call, Throwable t) {
+                    public void onFailure(Call<List<SearchResponse>>call, Throwable t) {
 
                     }
 
                 });
+
             }
 
             @Override
             public void afterTextChanged(Editable s) {
+
+
+
 
             }
 

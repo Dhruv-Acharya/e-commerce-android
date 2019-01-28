@@ -29,9 +29,9 @@ public class MyOrderViewHolder extends RecyclerView.ViewHolder {
 
     public void bind(final OrderItemResponse orderItemResponse){
         pname.setText(orderItemResponse.getProductName());
-        pprice.setText(orderItemResponse.getProductPrice());
+        pprice.setText("" + orderItemResponse.getProductPrice());
         pmerchant.setText(orderItemResponse.getMerchantName());
-        pQuantity.setText(orderItemResponse.getProductQuantity());
+        pQuantity.setText("" + orderItemResponse.getProductQuantity());
         Glide.with(pimage.getContext()).load(orderItemResponse.getProductImageUrl()).into(pimage);
 
     }

@@ -12,6 +12,8 @@ public class AppController extends Application {
     public static Retrofit retrofit = null;
     public static Retrofit retrofitProduct = null;
     public static Retrofit retrofitOrderItem = null;
+    public static Retrofit retrofitSearchItem = null;
+    public static int quantityInCart=0;
 
     @Override
     public void onCreate() {
@@ -56,6 +58,19 @@ public class AppController extends Application {
                     .build();
 
         }
+
+        if (null == retrofitSearchItem) {
+
+            OkHttpClient client = new OkHttpClient.Builder().build();
+
+            retrofitSearchItem = new Retrofit.Builder()
+                    .baseUrl("http://26f79b42.ngrok.io/")
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .client(client)
+                    .build();
+
+        }
+
 
 
     }

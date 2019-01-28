@@ -16,15 +16,14 @@
         tools:replace="android:label,android:icon">
         <activity android:name=".Main.AddressActivity"></activity>
         <activity android:name=".OrderSummary" />
-        <activity
-            android:name=".CartActivity"
-            android:parentActivityName=".Main.MainActivity" />
+
+
         <activity android:name=".CartActivity"
             android:label="My Cart"
             android:parentActivityName=".Main.MainActivity"></activity>
         <activity
             android:name=".OrderActivity"
-            android:label="My Orders"
+            android:label="My Orders Items"
             android:parentActivityName=".Main.MainActivity" />
         <activity
             android:name=".Login.LoginPage"
@@ -56,7 +55,8 @@
             android:theme="@style/AppTheme.ActionBar" />
         <activity
             android:name=".Search.SearchResultActivity"
-            android:parentActivityName=".Main.MainActivity">
+            android:parentActivityName=".Main.MainActivity"
+            android:theme="@style/AppTheme.ActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.SEARCH" />
 
@@ -69,7 +69,7 @@
         </activity>
         <activity
             android:name=".Main.OrderPageActivity"
-            android:label="My Order Items"
+            android:label="My Orders"
             android:parentActivityName=".Main.MainActivity"
             tools:ignore="DuplicateActivity" />
     </application>

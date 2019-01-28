@@ -35,17 +35,20 @@ public class OrderPageActivity extends AppCompatActivity {
         orderPageAdapter = new OrderPageAdapter(orderList);
         recyclerView.setLayoutManager(new LinearLayoutManager(OrderPageActivity.this));
         recyclerView.setAdapter(orderPageAdapter);
+        Log.d("MainActivity.tokenId",MainActivity.tokenId);
         iApiClass.getOrderResponse(MainActivity.tokenId).enqueue(new Callback<List<OrderPageResponse>>() {
             @Override
             public void onResponse(Call<List<OrderPageResponse>> call, Response<List<OrderPageResponse>> response) {
                 Log.d("Response1", response.body().toString());
-                orderList = response.body();
+                //orderList = response.body();
+                orderList.addAll(response.body());
                 Log.d("Response2", response.body().toString());
                 orderPageAdapter.notifyDataSetChanged();
             }
 
             @Override
             public void onFailure(Call<List<OrderPageResponse>> call, Throwable t) {
+                Log.e("Failure",t.getMessage());
 
             }
         });

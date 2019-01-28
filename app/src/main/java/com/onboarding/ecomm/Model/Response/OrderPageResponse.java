@@ -1,61 +1,75 @@
 package com.onboarding.ecomm.Model.Response;
 
+//import javax.annotation.Generated;Generated
 import com.google.gson.annotations.SerializedName;
 
-public class OrderPageResponse {
+//@Generated("com.robohorse.robopojogenerator")
+public class OrderPageResponse{
 
-    @SerializedName("date")
-    private String date;
+	@SerializedName("date")
+	private String date;
 
-    @SerializedName("amount")
-    private int amount;
+	@SerializedName("amount")
+	private int amount;
 
-    @SerializedName("orderId")
-    private String orderId;
+	@SerializedName("orderId")
+	private String orderId;
 
-    @SerializedName("customerId")
-    private String customerId;
+	@SerializedName("customerId")
+	private String customerId;
 
-    public String getDate() {
-        return date;
-    }
+	@SerializedName("addressId")
+	private String addressId;
 
-    public void setDate(String date) {
-        this.date = date;
-    }
+	public void setDate(String date){
+		this.date = date;
+	}
 
-    public int getAmount() {
-        return amount;
-    }
+	public String getDate(){
+		return date;
+	}
 
-    public void setAmount(int amount) {
-        this.amount = amount;
-    }
+	public void setAmount(int amount){
+		this.amount = amount;
+	}
 
-    public String getOrderId() {
-        return orderId;
-    }
+	public int getAmount(){
+		return amount;
+	}
 
-    public void setOrderId(String orderId) {
-        this.orderId = orderId;
-    }
+	public void setOrderId(String orderId){
+		this.orderId = orderId;
+	}
 
-    public String getCustomerId() {
-        return customerId;
-    }
+	public String getOrderId(){
+		return orderId;
+	}
 
-    public void setCustomerId(String customerId) {
-        this.customerId = customerId;
-    }
+	public void setCustomerId(String customerId){
+		this.customerId = customerId;
+	}
 
-    @Override
-    public String toString() {
-        return
-                "OrderPageResponse{" +
-                        "date = '" + date + '\'' +
-                        ",amount = '" + amount + '\'' +
-                        ",orderId = '" + orderId + '\'' +
-                        ",customerId = '" + customerId + '\'' +
-                        "}";
-    }
+	public String getCustomerId(){
+		return customerId;
+	}
+
+	public void setAddressId(String addressId){
+		this.addressId = addressId;
+	}
+
+	public String getAddressId(){
+		return addressId;
+	}
+
+	@Override
+ 	public String toString(){
+		return 
+			"OrderPageResponse{" + 
+			"date = '" + date + '\'' + 
+			",amount = '" + amount + '\'' + 
+			",orderId = '" + orderId + '\'' + 
+			",customerId = '" + customerId + '\'' + 
+			",addressId = '" + addressId + '\'' + 
+			"}";
+		}
 }

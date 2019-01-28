@@ -3,8 +3,6 @@
 
 
 
-    <item android:title="@string/my_profile">
-        <menu>
             <item
                 android:id="@+id/my_orders"
                 android:title="@string/my_orders" />
@@ -12,17 +10,14 @@
                 android:id="@+id/my_cart"
                 android:title="@string/my_cart" />
 
-        </menu>
-    </item>
 
-    <item android:title="">
-        <menu>
+
+
             <item
                 android:id="@+id/logout"
                 android:title="Log out"
                 android:visible="false"
                 />
-        </menu>
-    </item>
+
 
 </menu>

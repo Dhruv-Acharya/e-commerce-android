@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.cepheuen.elegantnumberbutton.view.ElegantNumberButton;
+import com.onboarding.ecomm.CartActivity;
 import com.onboarding.ecomm.Login.AppController;
 import com.onboarding.ecomm.Login.IApiClass;
 import com.onboarding.ecomm.Login.LoginPage;
@@ -33,6 +34,8 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import static com.onboarding.ecomm.Login.AppController.quantityInCart;
+
 public class ProductPage extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     private static TextView product_price, product_name, usp, description;
     private static Button add_to_cart, buy_now;
@@ -46,7 +49,7 @@ public class ProductPage extends AppCompatActivity implements AdapterView.OnItem
     private HashMap<String, Integer> merchantMap = new HashMap<>();
     private HashMap<String, String> merchantIdMap = new HashMap<>();
     private ElegantNumberButton quantity = null;
-    private static int quantityInCart=0;
+    //public static int quantityInCart=0;
 
 
     @Override
@@ -201,12 +204,13 @@ public class ProductPage extends AppCompatActivity implements AdapterView.OnItem
                         iApiClass = AppController.retrofitOrderItem.create(IApiClass.class);
                         RequestForAddToCart requestForAddToCart = new RequestForAddToCart();
                         requestForAddToCart.setQuantity(Integer.valueOf(quantity.getNumber())+quantityInCart);
-                        quantityInCart=Integer.valueOf(quantity.getNumber())+quantityInCart;
+
                         iApiClass.updateToCart(MainActivity.tokenId,productId,merchantId,requestForAddToCart).enqueue(new Callback<Void>() {
                             @Override
                             public void onResponse(Call<Void> call, Response<Void> response) {
                                 if(response.code() == 200) {
-                                    Toast.makeText(ProductPage.this, "Product added", Toast.LENGTH_LONG).show();
+                                    Toast.makeText(ProductPage.this, "Product added by put", Toast.LENGTH_LONG).show();
+                                    quantityInCart=Integer.valueOf(quantity.getNumber())+quantityInCart;
                                 } else {
                                     Toast.makeText(ProductPage.this, "Product not added", Toast.LENGTH_LONG).show();
                                 }
@@ -226,7 +230,49 @@ public class ProductPage extends AppCompatActivity implements AdapterView.OnItem
         });
 
 
+        buy_now.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if (sessionManager.isLoggedIn()) {
+                    Log.e("Quantity", String.valueOf(quantity.getNumber()));
+//                    quantityInCart= Integer.valueOf(quantity.getNumber());
+
+                    iApiClass = AppController.retrofitOrderItem.create(IApiClass.class);
+                    RequestForAddToCart requestForAddToCart = new RequestForAddToCart();
+                    requestForAddToCart.setQuantity(Integer.valueOf(quantity.getNumber()));
+                    quantityInCart = Integer.valueOf(quantity.getNumber());
+                    iApiClass.addToCart(MainActivity.tokenId, productId, merchantId, requestForAddToCart).enqueue(new Callback<Void>() {
+                        @Override
+                        public void onResponse(Call<Void> call, Response<Void> response) {
+                            Log.d("response.code()", String.valueOf(response.code()));
+                            if (response.code() == 200) {
+                                Toast.makeText(ProductPage.this, "Product added", Toast.LENGTH_LONG).show();
+                                Intent intent = new Intent(ProductPage.this, CartActivity.class);
+                                intent.putExtra("CustomerId",MainActivity.tokenId);
+                                startActivity(intent);
+                            } else {
+                                Toast.makeText(ProductPage.this, "Product not added", Toast.LENGTH_LONG).show();
+                            }
+                        }
+
+                        @Override
+                        public void onFailure(Call<Void> call, Throwable t) {
+                            Log.d("Failure", t.getMessage());
+
+
+                        }
+                    });
+
+
+                }
+
+
+            }
+        });
     }
+
+
 
 
 

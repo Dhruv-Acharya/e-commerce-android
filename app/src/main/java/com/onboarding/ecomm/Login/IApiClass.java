@@ -2,6 +2,7 @@ package com.onboarding.ecomm.Login;
 
 import com.onboarding.ecomm.Model.Request.LoginRequest;
 import com.onboarding.ecomm.Model.Request.SignUpRequest;
+import com.onboarding.ecomm.Model.Response.AddressResponse;
 import com.onboarding.ecomm.Model.Response.CartResponse;
 import com.onboarding.ecomm.Model.Response.Category;
 import com.onboarding.ecomm.Model.Response.LoginResponse;
@@ -42,8 +43,8 @@ public interface IApiClass {
     @GET("/product/get/{product_id}")
     public Call<ProductResponse> getProductReponse(@Path("product_id") String product_id);
 
-    @GET("/product/name")
-    public Call<SearchResponse> getSearchResponse(@Query("name")String name);
+    @GET("/product/query")
+    public Call<List<SearchResponse>> getSearchResponse(@Query(value="queryText", encoded = true) String queryText);
 
     @GET("/category/getAll")
     public Call<List<Category>> getAllCategory();
@@ -54,7 +55,7 @@ public interface IApiClass {
     @GET("/product/getMerchants/{productId}")
     public Call<List<MerchantResponse>> getMerchants(@Path("productId") String productId);
 
-    @GET("/order/get/{order_id}")
+    @GET("/order/getOrderAll/{order_id}")
     public Call<List<OrderItemResponse>> getOrderItems(@Path("order_id") String order_id);
 
     @GET("/cart/{customerId}")
@@ -65,5 +66,8 @@ public interface IApiClass {
 
     @DELETE("/cart/removeItem/{customerId}/{productId}/{merchantId}")
     public Call<Void> deleteProduct(@Path("customerId") String customerId,@Path("productId")String productId, @Path("merchantId")String merchantId);
+
+    @GET("/address/getAllAddress/{customerId}")
+    public Call<List<AddressResponse>> getAddresses(@Path("customerId")String customerId);
 
 }

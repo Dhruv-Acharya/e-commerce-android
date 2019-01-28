@@ -45,20 +45,12 @@ public class OrderActivity extends AppCompatActivity {
         iApiClass.getOrderItems(orderId).enqueue(new Callback<List<OrderItemResponse>>() {
             @Override
             public void onResponse(Call<List<OrderItemResponse>> call, Response<List<OrderItemResponse>> response) {
-                Log.d("Click", "Done");
-                orderItemResponses = response.body();
+                Log.e("Click", "done");
+                orderItemResponses.addAll(response.body());
                 Log.d("Click", orderItemResponses.toString());
 
                 orderAdapter = new OrderAdapter(orderItemResponses);
                 recyclerView.setLayoutManager(new LinearLayoutManager(OrderActivity.this, LinearLayoutManager.VERTICAL, false));
-                recyclerView.setLayoutManager(layoutManager);
-
-                recyclerView.setAdapter(orderAdapter);
-
-                recyclerView = findViewById(R.id.recyclerView);
-                LinearLayoutManager linearLayoutManager = new LinearLayoutManager(recyclerView.getContext());
-                recyclerView.setLayoutManager(linearLayoutManager);
-                OrderAdapter orderAdapter = new OrderAdapter(orderItemResponses);
                 recyclerView.setAdapter(orderAdapter);
 
             }

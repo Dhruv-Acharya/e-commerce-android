@@ -3,7 +3,6 @@ package com.onboarding.ecomm.Main;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.design.internal.NavigationMenu;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
@@ -18,6 +17,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -28,6 +28,7 @@ import com.onboarding.ecomm.Fragment.ElectronicsFragment;
 import com.onboarding.ecomm.Login.AppController;
 import com.onboarding.ecomm.Login.IApiClass;
 import com.onboarding.ecomm.Login.LoginPage;
+import com.onboarding.ecomm.Model.Response.CartResponse;
 import com.onboarding.ecomm.Model.Response.Category;
 import com.onboarding.ecomm.PrefManager;
 import com.onboarding.ecomm.R;
@@ -46,6 +47,7 @@ public class MainActivity extends AppCompatActivity
 
     public static String tokenId = null;
     public static int notificationCountCart = 0;
+    List<CartResponse> cartResponses = new ArrayList<>();
     private RecyclerView recyclerView;
     private DrawerLayout drawer;
     private ViewPager viewPager;
@@ -53,6 +55,7 @@ public class MainActivity extends AppCompatActivity
     private FloatingActionButton floatingActionButton;
     private CardView cardView;
     private IApiClass iApiClass;
+    private IApiClass iApiClass2;
     //private SessionManager session;
     private boolean doubleBackToExitPressedOnce;
     private PrefManager prefManager;
@@ -77,7 +80,7 @@ public class MainActivity extends AppCompatActivity
         floatingActionButton = findViewById(R.id.fab);
 
         SessionManager sessionManager = new SessionManager(this);
-        if(!sessionManager.isLoggedIn()) {
+        if (!sessionManager.isLoggedIn()) {
             floatingActionButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -85,9 +88,33 @@ public class MainActivity extends AppCompatActivity
                     startActivity(intent);
                 }
             });
-        }else{
+        } else {
             floatingActionButton.setClickable(false);
         }
+
+
+        iApiClass = AppController.retrofitProduct.create(IApiClass.class);
+
+        iApiClass2 = AppController.retrofitOrderItem.create(IApiClass.class);
+        tokenId = sessionManager.getUserDetails().get("CustomerId");
+        //Log.e("token", tokenId);
+        iApiClass2.getCartItems(tokenId).enqueue(new Callback<List<CartResponse>>() {
+            @Override
+            public void onResponse(Call<List<CartResponse>> call, Response<List<CartResponse>> response) {
+                cartResponses = response.body();
+//                Log.e("REsponse",cartResponses.toString());
+//                for(CartResponse cartResponse:cartResponses){
+//                    AppController.quantityInCart+=cartResponse.getQuantity();
+
+            }
+
+
+            @Override
+            public void onFailure(Call<List<CartResponse>> call, Throwable t) {
+
+            }
+        });
+
 
         //session = new SessionManager(getApplicationContext());
         //Toast.makeText(getApplicationContext(), "User Login Status: " + session.isLoggedIn(), Toast.LENGTH_LONG).show();
@@ -100,8 +127,6 @@ public class MainActivity extends AppCompatActivity
 
         viewPager = findViewById(R.id.viewpager);
         tabLayout = findViewById(R.id.tabs);
-
-        iApiClass = AppController.retrofitProduct.create(IApiClass.class);
 
 
         iApiClass.getAllCategory().enqueue(new Callback<List<Category>>() {
@@ -168,12 +193,11 @@ public class MainActivity extends AppCompatActivity
             return true;
         } else if (id == R.id.action_cart) {
             SessionManager sessionManager = new SessionManager(this);
-            if(sessionManager.isLoggedIn()) {
+            if (sessionManager.isLoggedIn()) {
                 Intent intent = new Intent(MainActivity.this, CartActivity.class);
                 intent.putExtra("CustomerId", tokenId);
                 startActivity(intent);
-            }
-            else{
+            } else {
                 Intent intent = new Intent(MainActivity.this, LoginPage.class);
                 startActivity(intent);
                 Toast.makeText(this,"Login before accessing orders",Toast.LENGTH_SHORT).show();
@@ -220,12 +244,11 @@ public class MainActivity extends AppCompatActivity
 
 
             }
-        }
-        else if(itemId==R.id.logout){
-            if(tokenId!=null){
-                item.setVisible(true);
+        } else if (itemId == R.id.logout) {
+            sessionManager.logoutUser(this);
+            Intent intent = new Intent(MainActivity.this, MainActivity.class);
+            startActivity(intent);
 
-            }
         }
 
 

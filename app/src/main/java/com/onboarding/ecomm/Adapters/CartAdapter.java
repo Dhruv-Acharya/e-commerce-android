@@ -29,7 +29,7 @@ public class CartAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
 
 
-    public CartAdapter(List<CartResponse> cartResponseList,CartCommunicator cartCommunicator) {
+    public CartAdapter(List<CartResponse> cartResponseList, CartCommunicator cartCommunicator) {
         this.cartResponseList = cartResponseList;
         this.cartCommunicator = cartCommunicator;
     }

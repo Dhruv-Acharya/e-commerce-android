@@ -28,8 +28,11 @@ public class SearchResponse {
     @SerializedName("description")
     private String description;
 
-    @SerializedName("priceRange")
-    private String priceRange;
+    @SerializedName("priceLowest")
+    private String priceLowest;
+
+    @SerializedName("priceHighest")
+    private String priceHighest;
 
     public String getUsp() {
         return usp;
@@ -87,26 +90,34 @@ public class SearchResponse {
         this.description = description;
     }
 
-    public String getPriceRange() {
-        return priceRange;
+    public String getPriceLowest() {
+        return priceLowest;
     }
 
-    public void setPriceRange(String priceRange) {
-        this.priceRange = priceRange;
+    public void setPriceLowest(String priceLowest) {
+        this.priceLowest = priceLowest;
+    }
+
+    public String getPriceHighest() {
+        return priceHighest;
+    }
+
+    public void setPriceHighest(String priceHighest) {
+        this.priceHighest = priceHighest;
     }
 
     @Override
     public String toString() {
-        return
-                "SearchResponse{" +
-                        "usp = '" + usp + '\'' +
-                        ",productId = '" + productId + '\'' +
-                        ",ratingCounter = '" + ratingCounter + '\'' +
-                        ",imageUrl = '" + imageUrl + '\'' +
-                        ",name = '" + name + '\'' +
-                        ",rating = '" + rating + '\'' +
-                        ",description = '" + description + '\'' +
-                        ",priceRange = '" + priceRange + '\'' +
-                        "}";
+        return "SearchResponse{" +
+                "usp='" + usp + '\'' +
+                ", productId='" + productId + '\'' +
+                ", ratingCounter=" + ratingCounter +
+                ", imageUrl='" + imageUrl + '\'' +
+                ", name='" + name + '\'' +
+                ", rating=" + rating +
+                ", description='" + description + '\'' +
+                ", priceLowest='" + priceLowest + '\'' +
+                ", priceHighest='" + priceHighest + '\'' +
+                '}';
     }
 }
